@@ -29,15 +29,12 @@ public class Invaders extends MIDlet implements Game {
 	public Invaders() {
 		super();
 		display = Display.getDisplay(this);
-		
 		igm = new InvaderGameMachine(this);
 		
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
 		igm.startGame();
-		
-
 	}
 
 	protected void pauseApp() {

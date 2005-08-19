@@ -7,6 +7,7 @@
 package invadergamegui;
 
 import gamegui.GameGUI;
+import gamegui.level.Level;
 import invadergamemachine.InvaderGameMachine;
 
 import java.util.Vector;
@@ -32,22 +33,20 @@ public class InvaderGameGUI extends GameGUI {
 	
 	private Image invaderpic = null;
 	private Image tankpic = null;
-	
-
 
 	/**
 	 * @param igc
 	 * 
 	 */
 	public InvaderGameGUI(InvaderGameMachine igm) {
-		super(false);
+		super(igm, false);
 		this.igm = igm;
 		
 		exit = new Command("exit",Command.EXIT,1);
 		addCommand(exit);
 		setCommandListener(this);
 	}
-
+	
 	protected void keyReleased(int keyCode) {
 		int command = InvaderGameMachine.NOCMD;
 		int key = getKeyStates();
@@ -83,8 +82,6 @@ public class InvaderGameGUI extends GameGUI {
 		 g.drawImage(i_buff, 0, 0, Graphics.TOP | Graphics.LEFT);
 	}
 	
-	
-	
 	public void commandAction(Command cmd, Displayable arg1) {
         if (cmd == exit) {
         	igm.exit();
@@ -97,23 +94,4 @@ public class InvaderGameGUI extends GameGUI {
 	private void printObjects(Graphics g) {
 		//g.drawImage(invaderpic,s.getX(),s.getY(),Graphics.TOP | Graphics.LEFT);
 	}
-
-
-	/**
-	 * @param invaderpic
-	 */
-	public void setInvaderpic(Image invaderpic) {
-		this.invaderpic = invaderpic;
-		
-	}
-
-	/**
-	 * @param image
-	 */
-	public void setTankpic(Image tankpic) {
-		this.tankpic = tankpic;
-		
-	}
-
-
 }

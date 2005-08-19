@@ -6,10 +6,12 @@
  */
 package invadergamemachine;
 
+import gamegui.level.Level;
 import gamemachine.GameMachine;
 import gamemachine.ResourceLoader;
 import invadergamegui.InvaderGameGUI;
 import invaders.Invaders;
+import invaders.InvadersSettings;
 
 
 /**
@@ -22,24 +24,6 @@ public class InvaderGameMachine extends GameMachine {
 	public static final int INVADER = 1;
 	public static final int TANK = 2;
 	
-	public static final int H_SPACE = 20; 
-	public static final int V_SPACE = 7;
-
-	public static final int RIGHT_OFFSET = 5;
-	public static final int BOTTOM_OFFSET = 5;
-	public static final int LEFT_OFFSET = 5;
-	public static final int TOP_OFFSET = 5;
-	
-	public static final int INVADERWIDTH = 14;
-	public static final int INVADERHEIGHT = 14;
-	
-	public static final int TANKWIDTH = 23;
-	public static final int TANKHEIGHT = 12;
-	
-	
-	
-	
-	
 	private static int gameState = GAMEON;
 
 	private static final String INVADERPIC = "invader1.png";
@@ -49,7 +33,7 @@ public class InvaderGameMachine extends GameMachine {
 	
 	private InvaderGameGUI igui = null;
 	
-
+	private Level [] levels = null;
 	/**
 	 * 
 	 */
@@ -66,18 +50,22 @@ public class InvaderGameMachine extends GameMachine {
 		igui.setHeight(screen_height);
 		igui.setWidth(screen_width);
 
-		loadRecoures();
-		speed = 100;
+		defineLevel();
+		setSpeed(100);
 	}
 	
 	/**
 	 * 
 	 */
-	private void loadRecoures() {
+	private void defineLevel() {
 		ResourceLoader r = new ResourceLoader();
-		r.loadImages(IMAGES_DESC);
-		igui.setInvaderpic(r.getImage(INVADERPIC));
-		igui.setTankpic(r.getImage(TANKPIC));
+		
+		levels = new Level[3];
+		
+		levels[0] = new Level(1,"TÖTEN SIE ALLE INVADERS",InvadersSettings.imageDescLevel1,InvadersSettings.soundDescLevel1,r);
+		levels[1] = new Level(2,"TÖTEN SIE ALLE!", InvadersSettings.imageDescLevel2, InvadersSettings.soundDescLevel2, r);
+		
+		
 	}
 
 	public void startGame() {

@@ -18,10 +18,11 @@ import javax.microedition.lcdui.Image;
  */
 public class ResourceLoader {
 	private Object [][] images = null;
-	
 	private Object [][] sounds = null;
 	
 	private static final String IMAGEROOT = "/images/";
+	private static final String SOUNDROOT = "/sound/";
+	
 	
 	/**
 	 * 
@@ -44,11 +45,34 @@ public class ResourceLoader {
 		}
 	}
 	
+	public void loadSounds(String [] sound_desc) {
+		
+		
+	}
+	
 	public Image getImage(String image_desc) {
 		for (int i=0; i< images.length;i++) 
 			if (image_desc.equals((String) images[i][0]))
 				return (Image) images[i][1];
-		
+
 		return null;
+	}
+
+	public Object getSound(String name) {
+		return null;
+	}
+	
+	public void flushResources() {
+		images = null;
+		sounds = null;
+		System.gc();
+	}
+
+	public Object[][] getSounds() {
+		return sounds;
+	}
+	
+	public Object[][] getImages() {
+		return images;
 	}
 }

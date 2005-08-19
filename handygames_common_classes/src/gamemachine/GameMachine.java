@@ -6,6 +6,7 @@
  */
 package gamemachine;
 
+import gamegui.level.Level;
 import games.Game;
 
 import javax.microedition.lcdui.Display;
@@ -27,11 +28,11 @@ public abstract class GameMachine {
 	public static final int UPLEFT = 7;
 	public static final int UPRIGHT = 8;
 	
-	public static final String PIC = "1";
-	public static final String SOUND = "2";
 	
 	public static final int GAMEON = 1;
 	public static final int GAMEOFF = 2;
+	
+	private Level currLevel = null;
 	
 	
 	protected Display display = null;
@@ -42,7 +43,7 @@ public abstract class GameMachine {
 	
 	protected int speed = 0;
 
-	
+	private Level curr_level = null;
 	/**
 	 * 
 	 */
@@ -63,7 +64,18 @@ public abstract class GameMachine {
 		this.game = game;
 		display = game.getCurrentDisplay();
 		
-		
+	}
+
+	public Level getCurrLevel() {
+		return curr_level;
+	}
+	
+	protected void setCurrLevel(Level currLevel) {
+		this.currLevel = currLevel;
+	}
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
 		
 	}
 	
@@ -72,4 +84,6 @@ public abstract class GameMachine {
 	public abstract void exit();
 	
 	public abstract void showStartScreen();
+	
+
 }
