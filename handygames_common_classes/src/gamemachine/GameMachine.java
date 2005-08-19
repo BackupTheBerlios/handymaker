@@ -43,7 +43,6 @@ public abstract class GameMachine {
 	
 	protected int speed = 0;
 
-	private Level curr_level = null;
 	/**
 	 * 
 	 */
@@ -67,7 +66,7 @@ public abstract class GameMachine {
 	}
 
 	public Level getCurrLevel() {
-		return curr_level;
+		return currLevel;
 	}
 	
 	protected void setCurrLevel(Level currLevel) {

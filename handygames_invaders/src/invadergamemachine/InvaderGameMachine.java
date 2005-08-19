@@ -57,6 +57,7 @@ public class InvaderGameMachine extends GameMachine {
 
 	public void nextLevel() {
 		setCurrLevel(levels[currLevelIndex++]);
+
 		try {
 			currLevel.activateLevel();
 			igui.activateGUI();

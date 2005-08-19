@@ -19,6 +19,9 @@ public class Level {
 		return resourceLoader.getImageSets();
 	}
 	
+	public Image[][] getImageSet(int id) {
+		return resourceLoader.getImageSet(id);
+	}
 	
 	public Object [] getImageDesc() {
 		return imagesToLoad;
