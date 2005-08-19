@@ -17,12 +17,17 @@ import javax.microedition.lcdui.Image;
  * @author Star
  */
 public class ResourceLoader {
-	private Object [][] images = null;
 	private Object [][] sounds = null;
+	
+	private Object [] imageSets = null;
 	
 	private static final String IMAGEROOT = "/images/";
 	private static final String SOUNDROOT = "/sound/";
 	
+	
+	public Object[] getImageSets() {
+		return imageSets;
+	}
 	
 	/**
 	 * 
@@ -32,17 +37,24 @@ public class ResourceLoader {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void loadImages(String [] image_desc) {
-		images = new Object[image_desc.length][2];
-		for (int i=0; i<image_desc.length;i++) {
-			images[i][0] = image_desc[i];
-			try {
-				images[i][1] = Image.createImage(IMAGEROOT+image_desc[i]);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+	public Object [] loadImageSets(Object [] imagesets) throws IOException {
+		Object [] result = new Object[imagesets.length];
+		for (int i=0; i<imagesets.length; i++) {
+			Image [][] imageSet = null;
+			if (imagesets[i] != null) {
+				String [][] imageSetDesc = (String [][]) imagesets[i];
+				
+				imageSet = new Image[imageSetDesc.length][imageSetDesc[1].length]; 
+				for (int animation = 0; animation < imageSetDesc.length;animation++) 
+					for (int frame = 0; frame < imageSetDesc[1].length;frame++) {
+						System.out.println(IMAGEROOT+imageSetDesc[animation][frame]);
+						imageSet[animation][frame] = Image.createImage(IMAGEROOT+imageSetDesc[animation][frame]);
+					}
 			}
+			result[i] = imageSet;
 		}
+		
+		return result;
 	}
 	
 	public void loadSounds(String [] sound_desc) {
@@ -50,20 +62,12 @@ public class ResourceLoader {
 		
 	}
 	
-	public Image getImage(String image_desc) {
-		for (int i=0; i< images.length;i++) 
-			if (image_desc.equals((String) images[i][0]))
-				return (Image) images[i][1];
-
-		return null;
-	}
-
 	public Object getSound(String name) {
 		return null;
 	}
 	
 	public void flushImages() {
-		images = null;
+		imageSets = null;
 		System.gc();
 	}
 
@@ -72,11 +76,13 @@ public class ResourceLoader {
 		System.gc();
 	}
 	
+	public void flushResources() {
+		flushSounds();
+		flushImages();
+	}
+	
 	public Object[][] getSounds() {
 		return sounds;
 	}
-	
-	public Object[][] getImages() {
-		return images;
-	}
+
 }

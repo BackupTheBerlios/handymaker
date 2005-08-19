@@ -1,5 +1,7 @@
 package gamemachine.level;
 
+import java.io.IOException;
+
 import javax.microedition.lcdui.Image;
 
 import gamemachine.ResourceLoader;
@@ -10,11 +12,15 @@ public class Level {
 	public int nr = 0;
 	
 	public String desc = null;	
-	public String [] imagesToLoad = null;
+	public Object [] imagesToLoad = null;
 	public String [] soundsToLoad = null;
 	
+	public Object [] getImageSets() {
+		return resourceLoader.getImageSets();
+	}
 	
-	public String [] getImageDesc() {
+	
+	public Object [] getImageDesc() {
 		return imagesToLoad;
 	}
 	
@@ -25,16 +31,6 @@ public class Level {
 	/**
 	 * Gibt ein zweidimensionales Array vom Typ Object zurück.
 	 * <br>object[0][0] = <filename>
-	 * <br>object[0][1] = <Image>
-	 * @return
-	 */
-	public Object [][] getImages() {
-		return resourceLoader.getImages();
-	}
-
-	/**
-	 * Gibt ein zweidimensionales Array vom Typ Object zurück.
-	 * <br>object[0][0] = <filename>
 	 * <br>object[0][1] = <Sound>
 	 * @return
 	 */
@@ -42,7 +38,7 @@ public class Level {
 		return resourceLoader.getSounds();
 	}
 	
-	public Level(int nr, String desc, String [] imagesToLoad, String [] soundsToLoad, ResourceLoader resourceLoader) {
+	public Level(int nr, String desc, Object [] imagesToLoad, String [] soundsToLoad, ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;
 		this.nr = nr;
 		this.desc = desc;
@@ -50,16 +46,12 @@ public class Level {
 		this.resourceLoader = resourceLoader;
 	}
 	
-	public void activateLevel() {
-		resourceLoader.loadImages(imagesToLoad);
-		resourceLoader.loadSounds(soundsToLoad);
+	public void activateLevel() throws IOException {
+		resourceLoader.loadImageSets(imagesToLoad);
 		
+		resourceLoader.loadSounds(soundsToLoad);
 	}
-
-	public Image getImageByName(String name) {
-		return resourceLoader.getImage(name);
-	}
-	
+		
 	public Object getSoundByName(String name) {
 		return resourceLoader.getSound(name);
 	}
@@ -72,7 +64,7 @@ public class Level {
 		resourceLoader.flushImages();
 	}
 	
-	public void passivateLevel() {
-		
+	public void flushResources() {
+		resourceLoader.flushResources();
 	}	
 }

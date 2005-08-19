@@ -31,8 +31,6 @@ public class InvaderGameGUI extends GameGUI {
 	
 	private InvaderGameMachine igm = null;
 	
-	private Image invaderpic = null;
-	private Image tankpic = null;
 
 	/**
 	 * @param igc
@@ -45,7 +43,15 @@ public class InvaderGameGUI extends GameGUI {
 		exit = new Command("exit",Command.EXIT,1);
 		addCommand(exit);
 		setCommandListener(this);
+		
 	}
+	
+	public void loadNewLevel() {
+		super.loadNewLevel();
+		
+		
+	}
+	
 	
 	protected void keyReleased(int keyCode) {
 		int command = InvaderGameMachine.NOCMD;
@@ -73,8 +79,6 @@ public class InvaderGameGUI extends GameGUI {
 		if (g_buff != null) {
 			// INVADERS
 			printObjects(g_buff);
-			
-			// FIRE
 		}
 		
 		 g.drawImage(i_buff, 0, 0, Graphics.TOP | Graphics.LEFT);
@@ -91,5 +95,13 @@ public class InvaderGameGUI extends GameGUI {
 	 */
 	private void printObjects(Graphics g) {
 		//g.drawImage(invaderpic,s.getX(),s.getY(),Graphics.TOP | Graphics.LEFT);
+		
+		
+		
+	}
+
+	public void activateGUI() {
+		// TODO Auto-generated method stub
+		
 	}
 }

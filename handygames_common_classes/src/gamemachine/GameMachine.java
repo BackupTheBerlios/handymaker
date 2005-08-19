@@ -32,7 +32,7 @@ public abstract class GameMachine {
 	public static final int GAMEON = 1;
 	public static final int GAMEOFF = 2;
 	
-	private Level currLevel = null;
+	protected Level currLevel = null;
 	
 	
 	protected Display display = null;

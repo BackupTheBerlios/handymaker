@@ -6,6 +6,8 @@
  */
 package invadergamemachine;
 
+import java.io.IOException;
+
 import gamemachine.GameMachine;
 import gamemachine.ResourceLoader;
 import gamemachine.level.Level;
@@ -24,23 +26,20 @@ public class InvaderGameMachine extends GameMachine {
 	public static final int INVADER = 1;
 	public static final int TANK = 2;
 	
-	private static int gameState = GAMEON;
-
-	private static final String INVADERPIC = "invader1.png";
-	private static final String TANKPIC = "tank.png";
-	private static final String [] IMAGES_DESC = {INVADERPIC,TANKPIC};
-	private static final String [] SOUNDS_DESC = null;
-	
 	private InvaderGameGUI igui = null;
-	
+
 	private Level [] levels = null;
+	private int currLevelIndex = 0;
+
+	private static int gameState = GAMEON;
+	
 	/**
 	 * 
 	 */
 	public InvaderGameMachine(Invaders invaders) {
 		super(invaders);
 		
-		//igui = new InvaderGameGUI(this,igc);
+		igui = new InvaderGameGUI(this);
 		
 		display.setCurrent(igui);
 
@@ -52,6 +51,24 @@ public class InvaderGameMachine extends GameMachine {
 
 		defineLevel();
 		setSpeed(100);
+		
+		nextLevel();
+	}
+
+	public void nextLevel() {
+		setCurrLevel(levels[currLevelIndex++]);
+		try {
+			currLevel.activateLevel();
+			igui.activateGUI();
+			
+			// SOUND AKTIVIEREN
+			
+			currLevel.flushResources();
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	/**
@@ -62,9 +79,9 @@ public class InvaderGameMachine extends GameMachine {
 		
 		levels = new Level[3];
 		
-		levels[0] = new Level(1,"TÖTEN SIE ALLE INVADERS",InvadersSettings.imageDescLevel1,InvadersSettings.soundDescLevel1,r);
-		levels[1] = new Level(2,"TÖTEN SIE ALLE!", InvadersSettings.imageDescLevel2, InvadersSettings.soundDescLevel2, r);
-		
+		levels[0] = new Level(1,"",InvadersSettings.IMAGESETS_L1,InvadersSettings.soundDescLevel1,r);
+		levels[1] = new Level(2,"",InvadersSettings.IMAGESETS_L2,InvadersSettings.soundDescLevel2, r);
+		levels[2] = new Level(3,"",InvadersSettings.IMAGESETS_L3,InvadersSettings.soundDescLevel2,r);
 		
 	}
 
@@ -107,7 +124,4 @@ public class InvaderGameMachine extends GameMachine {
 	public void showStartScreen() {
 		display.setCurrent(igui);		
 	}
-
-	
-
 }
