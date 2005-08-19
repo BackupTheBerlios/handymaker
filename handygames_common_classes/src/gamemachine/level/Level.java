@@ -64,8 +64,12 @@ public class Level {
 		return resourceLoader.getSound(name);
 	}
 	
-	public void flushResources() {
-		resourceLoader.flushResources();
+	public void flushSounds() {
+		resourceLoader.flushSounds();
+	}
+	
+	public void flushImages() {
+		resourceLoader.flushImages();
 	}
 	
 	public void passivateLevel() {

@@ -62,12 +62,16 @@ public class ResourceLoader {
 		return null;
 	}
 	
-	public void flushResources() {
+	public void flushImages() {
 		images = null;
-		sounds = null;
 		System.gc();
 	}
 
+	public void flushSounds() {
+		sounds = null;
+		System.gc();
+	}
+	
 	public Object[][] getSounds() {
 		return sounds;
 	}
