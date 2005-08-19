@@ -1,4 +1,4 @@
-package gamegui.level;
+package gamemachine.level;
 
 import javax.microedition.lcdui.Image;
 

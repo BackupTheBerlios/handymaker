@@ -6,8 +6,8 @@
  */
 package gamegui;
 
-import gamegui.level.Level;
 import gamemachine.GameMachine;
+import gamemachine.level.Level;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;

@@ -6,7 +6,7 @@
  */
 package gamemachine;
 
-import gamegui.level.Level;
+import gamemachine.level.Level;
 import games.Game;
 
 import javax.microedition.lcdui.Display;

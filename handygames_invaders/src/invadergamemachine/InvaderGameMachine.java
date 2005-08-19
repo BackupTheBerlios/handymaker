@@ -6,9 +6,9 @@
  */
 package invadergamemachine;
 
-import gamegui.level.Level;
 import gamemachine.GameMachine;
 import gamemachine.ResourceLoader;
+import gamemachine.level.Level;
 import invadergamegui.InvaderGameGUI;
 import invaders.Invaders;
 import invaders.InvadersSettings;

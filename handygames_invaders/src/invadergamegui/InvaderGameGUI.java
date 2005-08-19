@@ -7,7 +7,7 @@
 package invadergamegui;
 
 import gamegui.GameGUI;
-import gamegui.level.Level;
+import gamemachine.level.Level;
 import invadergamemachine.InvaderGameMachine;
 
 import java.util.Vector;
@@ -67,9 +67,7 @@ public class InvaderGameGUI extends GameGUI {
 		Graphics g_buff = i_buff.getGraphics();
 		
 		g_buff.setColor(0,0,0);
-		
 		g_buff.fillRect(0,0,screen_width,screen_height);
-		
 		g_buff.setColor(255,255,255);
 
 		if (g_buff != null) {
