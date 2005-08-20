@@ -47,9 +47,11 @@ public class ResourceLoader {
 				String [][] imageSetDesc = (String [][]) imagesets[i];
 				int maxlength = ArrayTools.arrayMaxWidth(imageSetDesc);
 				imageSet = new Image[imageSetDesc.length][maxlength]; 
-				for (int animation = 0; animation < imageSetDesc.length;animation++) 
-					for (int frame= 0; frame < imageSetDesc[animation].length;frame++) 
+				for (int animation = 0; animation < imageSetDesc.length;animation++) {
+					for (int frame= 0; frame < imageSetDesc[animation].length;frame++) {
 						imageSet[animation][frame] = Image.createImage(IMAGEROOT+imageSetDesc[animation][frame]);
+					}
+				}
 			}
 			imageSets[i] = imageSet;
 		}

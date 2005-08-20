@@ -60,7 +60,7 @@ public class InvaderGameMachine extends GameMachine {
 
 		try {
 			currLevel.activateLevel();
-			igui.activateGUI();
+			igui.loadNewLevel();
 			
 			// SOUND AKTIVIEREN
 			
