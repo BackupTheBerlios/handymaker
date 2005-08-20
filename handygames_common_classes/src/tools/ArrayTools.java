@@ -16,4 +16,16 @@ public class ArrayTools {
 		return val;
 	}
 	
+	
+	public static String getArrayPrint(Object [][] array) {
+		String print = "";
+		if (array == null)
+			return null;
+		for (int i=0;i<array.length;i++) {
+			print += "\n";
+			for (int j = 0; j<array[i].length;j++)
+				print += " - "+array[i][j];
+		}
+		return print;
+	}
 }

@@ -11,6 +11,8 @@ import java.util.Vector;
 
 import javax.microedition.lcdui.Image;
 
+import tools.ArrayTools;
+
 /**
  * Lädt Resourcen wie Images, Sounds etc.
  * 
@@ -43,16 +45,14 @@ public class ResourceLoader {
 			Image [][] imageSet = null;
 			if (imagesets[i] != null) {
 				String [][] imageSetDesc = (String [][]) imagesets[i];
-				
-				imageSet = new Image[imageSetDesc.length][imageSetDesc[1].length]; 
+				int maxlength = ArrayTools.arrayMaxWidth(imageSetDesc);
+				imageSet = new Image[imageSetDesc.length][maxlength]; 
 				for (int animation = 0; animation < imageSetDesc.length;animation++) 
-					for (int frame = 0; frame < imageSetDesc[1].length;frame++) 
+					for (int frame= 0; frame < imageSetDesc[animation].length;frame++) 
 						imageSet[animation][frame] = Image.createImage(IMAGEROOT+imageSetDesc[animation][frame]);
 			}
 			imageSets[i] = imageSet;
 		}
-		
-		
 	}
 	
 	public void loadSounds(String [] sound_desc) {
