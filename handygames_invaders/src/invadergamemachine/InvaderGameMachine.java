@@ -63,6 +63,7 @@ public class InvaderGameMachine extends GameMachine {
 			igui.loadNewLevel();
 			
 			// SOUND AKTIVIEREN
+			// soundEngine.loadResources();
 			
 			currLevel.flushResources();
 			
@@ -80,9 +81,9 @@ public class InvaderGameMachine extends GameMachine {
 		
 		levels = new Level[3];
 		
-		levels[0] = new Level(1,"",InvadersSettings.IMAGESETS_L1,InvadersSettings.soundDescLevel1,r);
-		levels[1] = new Level(2,"",InvadersSettings.IMAGESETS_L2,InvadersSettings.soundDescLevel2, r);
-		levels[2] = new Level(3,"",InvadersSettings.IMAGESETS_L3,InvadersSettings.soundDescLevel2,r);
+		levels[0] = new Level(1,"",InvadersSettings.IMAGESETS_L1,InvadersSettings.DESC_SOUNDSET_L1,r);
+		levels[1] = new Level(2,"",InvadersSettings.IMAGESETS_L2,InvadersSettings.DESC_SOUNDSET_L2, r);
+		levels[2] = new Level(3,"",InvadersSettings.IMAGESETS_L3,InvadersSettings.DESC_SOUNDSET_L3,r);
 		
 	}
 

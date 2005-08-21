@@ -20,17 +20,33 @@ public class InvadersSettings {
 	public static final int TANKWIDTH = 23;
 	public static final int TANKHEIGHT = 12;
 	
-	public static final int S_INVADERSOUNDSET = 100;
-	public static final int S_INVADERSHOOT = 101;
-	public static final int S_INVADEREXPL = 102;
-	public static final int S_INVADERMOVE = 103;
+	public static final int S_INVADERSOUNDSET_A = 0;
+	public static final int S_INVADERSHOOT_A = 0;
+	public static final int S_INVADEREXPL_A = 1;
+	public static final int S_INVADERMOVE_A = 2;
 	
-	public static final int S_TANKSOUNDSET = 200;
-	public static final int S_TANKSHOOT = 201;
-	public static final int S_TANKEXPL = 202;
+	public static final int S_INVADERSOUNDSET_B = 1;
+	public static final int S_INVADERSHOOT_B = 0;
+	public static final int S_INVADEREXPL_B = 1;
+	public static final int S_INVADERMOVE_B = 2;
+	
+	public static final int S_TANKSOUNDSET = 2;
+	public static final int S_TANKMOVE = 0;
+	public static final int S_TANKSHOOT = 1;
+	public static final int S_TANKEXPL = 2;
 
-	public static String soundDescLevel1 [] = {"invaders.wav","invaders1.wav"};
-	public static String soundDescLevel2 [] = {"invaders.wav","invaders1.wav"};
+	public static String DESC_INVADER_A [] = {"inv_move.wav","inv_fire.wav","inv_explosion.wav"};
+	public static String DESC_INVADER_B [] = {"inv_move.wav","inv_fire.wav","inv_explosion.wav"};
+	public static String DESC_TANK [] = {"tan_move","tan_fire.wav","tan_explosion.wav"};
+	
+	
+//	public static Object [][] DESC_SOUNDSET_L1tmp = {{new Integer(S_INVADERSOUNDSET_A),DESC_INVADER_A},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
+	public static Object [] DESC_SOUNDSET_L1 = {DESC_INVADER_A,null,DESC_TANK};
+	public static Object [] DESC_SOUNDSET_L2 = {null,DESC_INVADER_B,DESC_TANK};
+	public static Object [] DESC_SOUNDSET_L3 = {DESC_INVADER_A,DESC_INVADER_B,DESC_TANK};
+	
+	
+	
 	
 	public static final int I_INVADER_A_IMAGESET = 0;
 	public static final int I_INVADER_A_EXPL = 0;
@@ -47,6 +63,7 @@ public class InvadersSettings {
 
 	/** Für den Invadertyp A */
 	public static String DESC_INVADER_A_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png","inv_expl3.png"},{"inv_move1.png","inv_move2.png"}};
+
 	/** Für den Invadertyp B */
 	public static String DESC_INVADER_B_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png"},{"inv_move1.png","inv_move2.png"}};
 	/** Der Tank*/

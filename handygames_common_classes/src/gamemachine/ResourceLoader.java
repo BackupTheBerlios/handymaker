@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.Vector;
 
 import javax.microedition.lcdui.Image;
+import javax.microedition.media.Player;
 
 import tools.ArrayTools;
 
@@ -19,7 +20,7 @@ import tools.ArrayTools;
  * @author Star
  */
 public class ResourceLoader {
-	private Object [][] sounds = null;
+	private Player [] sounds = null;
 	
 	private Object [] imageSets = null;
 	
@@ -57,8 +58,12 @@ public class ResourceLoader {
 		}
 	}
 	
-	public void loadSounds(String [] sound_desc) {
-		
+	public void loadSounds(Object [] sound_desc) {
+		for (int i=0; i<sound_desc.length; i++) {
+			String [] sounds = (String []) sound_desc[i];
+			System.out.println(ArrayTools.getArrayPrint(sounds));
+			
+		}
 		
 	}
 	
@@ -81,7 +86,7 @@ public class ResourceLoader {
 		flushImages();
 	}
 	
-	public Object[][] getSounds() {
+	public Player [] getSounds() {
 		return sounds;
 	}
 
