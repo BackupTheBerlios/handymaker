@@ -6,6 +6,7 @@
  */
 package invaders;
 
+import gamegui.guitemplates.GameList;
 import games.Game;
 import invadergamemachine.InvaderGameMachine;
 
