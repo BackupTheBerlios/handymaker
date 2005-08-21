@@ -46,7 +46,7 @@ public class InvadersSettings {
 	
 
 	/** Für den Invadertyp A */
-	public static String DESC_INVADER_A_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png",""},{"inv_move1.png","inv_move2.png"}};
+	public static String DESC_INVADER_A_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png","inv_expl3.png"},{"inv_move1.png","inv_move2.png"}};
 	/** Für den Invadertyp B */
 	public static String DESC_INVADER_B_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png"},{"inv_move1.png","inv_move2.png"}};
 	/** Der Tank*/
