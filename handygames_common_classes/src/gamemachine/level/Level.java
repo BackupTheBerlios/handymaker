@@ -13,7 +13,7 @@ public class Level {
 	public int nr = 0;
 	
 	public String desc = null;	
-	public Object [] imagesToLoad = null;
+	public Object [][] imagesToLoad = null;
 	public Object [] soundsToLoad = null;
 	
 	public Object [] getImageSets() {
@@ -42,7 +42,7 @@ public class Level {
 		return resourceLoader.getSounds();
 	}
 	
-	public Level(int nr, String desc, Object [] imagesToLoad, Object [] soundsToLoad, ResourceLoader resourceLoader) {
+	public Level(int nr, String desc, Object [][] imagesToLoad, Object [] soundsToLoad, ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;
 		this.nr = nr;
 		this.desc = desc;

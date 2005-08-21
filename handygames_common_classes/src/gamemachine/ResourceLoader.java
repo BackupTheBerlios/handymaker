@@ -22,7 +22,7 @@ import tools.ArrayTools;
 public class ResourceLoader {
 	private Player [] sounds = null;
 	
-	private Object [] imageSets = null;
+	private Object [][] imageSets = null;
 	
 	private static final String IMAGEROOT = "/images/";
 	private static final String SOUNDROOT = "/sound/";
@@ -40,21 +40,20 @@ public class ResourceLoader {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void loadImageSets(Object [] imagesets) throws IOException {
-		imageSets = new Object[imagesets.length];
+	public void loadImageSets(Object [][] imagesets) throws IOException {
+		imageSets = new Object[imagesets.length][2];
 		for (int i=0; i<imagesets.length; i++) {
-			Image [][] imageSet = null;
-			if (imagesets[i] != null) {
-				String [][] imageSetDesc = (String [][]) imagesets[i];
-				int maxlength = ArrayTools.arrayMaxWidth(imageSetDesc);
+			String [][] imageSetDesc = (String [][]) imagesets[i][1];
+			int maxlength = ArrayTools.arrayMaxWidth(imageSetDesc);
+			Image [][] imageSet = new Image[imageSetDesc.length][maxlength];
+			
+			for (int animation = 0; animation < imageSetDesc.length;animation++) 
+				for (int frame= 0; frame < imageSetDesc[animation].length;frame++) {
+					imageSet[animation][frame] = Image.createImage(IMAGEROOT+imageSetDesc[animation][frame]);
+				}
 
-				imageSet = new Image[imageSetDesc.length][maxlength]; 
-				for (int animation = 0; animation < imageSetDesc.length;animation++) 
-					for (int frame= 0; frame < imageSetDesc[animation].length;frame++) {
-						imageSet[animation][frame] = Image.createImage(IMAGEROOT+imageSetDesc[animation][frame]);
-					}
-			}
-			imageSets[i] = imageSet;
+			imageSets[i][0] = imagesets[i][0];
+			imageSets[i][1] = imageSet;
 		}
 	}
 	
@@ -91,6 +90,9 @@ public class ResourceLoader {
 	}
 
 	public Image[][] getImageSet(int id) {
-		return (Image [][] )imageSets[id];
+		for (int i=0; i<imageSets.length;i++)
+			if (((Integer)imageSets[i][0]).intValue() == id)
+				return (Image [][]) imageSets[i][1];
+		return null;
 	}
 }

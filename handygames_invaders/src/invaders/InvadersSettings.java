@@ -72,17 +72,17 @@ public class InvadersSettings {
 	/**
 	 * Imagesets für level 1
 	 */
-	public static Object [] IMAGESETS_L1  = {DESC_INVADER_A_IMAGESET,null,DESC_TANKIMAGESET};
+	public static Object [][] IMAGESETS_L1  = {{new Integer(I_INVADER_A_IMAGESET),DESC_INVADER_A_IMAGESET},{new Integer(I_TANKIMAGESET),DESC_TANKIMAGESET}};
 	
 	/**
 	 * Imagesets für level 2
 	 */
-	public static Object [] IMAGESETS_L2  = {null,DESC_INVADER_B_IMAGESET,DESC_TANKIMAGESET};
+	public static Object [][] IMAGESETS_L2  = {{new Integer(I_INVADER_B_IMAGESET),DESC_INVADER_B_IMAGESET},{new Integer(I_TANKIMAGESET),DESC_TANKIMAGESET}};
 	
 	/**
 	 * Imagesets für level 3
 	 */
-	public static Object [] IMAGESETS_L3  = {DESC_INVADER_A_IMAGESET,DESC_INVADER_B_IMAGESET,DESC_TANKIMAGESET};
+	public static Object [][] IMAGESETS_L3  = {{new Integer(I_INVADER_A_IMAGESET),DESC_INVADER_A_IMAGESET},{new Integer(I_INVADER_B_IMAGESET),DESC_INVADER_B_IMAGESET},{new Integer(I_TANKIMAGESET),DESC_TANKIMAGESET}};
 	
 	
 }
