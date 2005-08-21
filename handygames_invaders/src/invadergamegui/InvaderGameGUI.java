@@ -77,6 +77,7 @@ public class InvaderGameGUI extends GameGUI {
 	}
 	
 	public void paint(Graphics g) {
+		// image vorher erzeugen um damit den gc aufruf zu sparen
 		Image i_buff = Image.createImage(screen_width,screen_height);
 		Graphics g_buff = i_buff.getGraphics();
 		
