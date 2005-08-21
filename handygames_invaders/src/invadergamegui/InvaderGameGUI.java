@@ -91,7 +91,7 @@ public class InvaderGameGUI extends GameGUI {
 			// INVADERS
 			printObjects(g_buff);
 		}
-		
+
 		System.gc();
 		
     	g.drawImage(i_buff, 0, 0, Graphics.TOP | Graphics.LEFT);
@@ -109,7 +109,7 @@ public class InvaderGameGUI extends GameGUI {
 	 */
 	private void printObjects(Graphics g) {
 		//g.drawImage(invaderpic,s.getX(),s.getY(),Graphics.TOP | Graphics.LEFT);
-		if (lastdraw>2)
+		if (lastdraw>5)
 			lastdraw = 0;
 		g.drawImage(i_invaders_a[InvadersSettings.I_INVADER_A_EXPL][lastdraw++],10,20,Graphics.TOP | Graphics.LEFT);
 		

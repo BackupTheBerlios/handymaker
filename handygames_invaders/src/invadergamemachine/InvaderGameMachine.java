@@ -40,9 +40,11 @@ public class InvaderGameMachine extends GameMachine {
 		super(invaders);
 		
 		igui = new InvaderGameGUI(this);
+		igui.setFullScreenMode(true);
 		
 		display.setCurrent(igui);
-
+		
+		
 		screen_width = igui.getWidth();
 		screen_height = igui.getHeight();
 
@@ -50,7 +52,7 @@ public class InvaderGameMachine extends GameMachine {
 		igui.setWidth(screen_width);
 
 		defineLevel();
-		setSpeed(100);
+		setSpeed(3000);
 		
 		nextLevel();
 	}

@@ -62,7 +62,7 @@ public class InvadersSettings {
 	
 
 	/** Für den Invadertyp A */
-	public static String DESC_INVADER_A_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png","inv_expl3.png"},{"inv_move1.png","inv_move2.png"}};
+	public static String DESC_INVADER_A_IMAGESET  [][] = {{"1.PNG","2.PNG","3.PNG","4.PNG","5.PNG","6.PNG"},{"inv_move1.png","inv_move2.png"}};
 
 	/** Für den Invadertyp B */
 	public static String DESC_INVADER_B_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png"},{"inv_move1.png","inv_move2.png"}};
