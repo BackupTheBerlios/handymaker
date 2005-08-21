@@ -84,10 +84,14 @@ public class InvaderGameGUI extends GameGUI {
 		g_buff.fillRect(0,0,screen_width,screen_height);
 		g_buff.setColor(255,255,255);
 
+		
+		
 		if (g_buff != null) {
 			// INVADERS
 			printObjects(g_buff);
 		}
+		
+		System.gc();
 		
     	g.drawImage(i_buff, 0, 0, Graphics.TOP | Graphics.LEFT);
 	}
