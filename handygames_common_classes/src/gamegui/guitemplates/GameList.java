@@ -1,18 +1,29 @@
 package gamegui.guitemplates;
 
 import javax.microedition.lcdui.Graphics;
+import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.List;
+import javax.microedition.lcdui.game.GameCanvas;
 
-public class GameList extends List {
-
-	public GameList(String arg0, int arg1) {
-		super(arg0, arg1);
-		// TODO Auto-generated constructor stub
-	}
+public class GameList extends GameCanvas {
+	private Image background = null;
 
 	
+	/**
+	 * @param arg0
+	 */
+	public GameList(boolean arg0, Image background) {
+		super(arg0);
+		this.background = background;
+	}
+	
+	
+	
+	
 	public void paint(Graphics g) {
-		g.setColor(0,0,0);
-		g.fillRect(0,0,100,100);
+		if (background != null) {
+			g.drawImage(background,0,0,Graphics.TOP | Graphics.LEFT);
+			
+		}
 	}
 }
