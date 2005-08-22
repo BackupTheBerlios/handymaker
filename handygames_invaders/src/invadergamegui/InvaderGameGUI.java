@@ -80,7 +80,7 @@ public class InvaderGameGUI extends GameGUI {
 		// image vorher erzeugen um damit den gc aufruf zu sparen
 		Image i_buff = Image.createImage(screen_width,screen_height);
 		Graphics g_buff = i_buff.getGraphics();
-		
+
 		g_buff.setColor(0,0,0);
 		g_buff.fillRect(0,0,screen_width,screen_height);
 		g_buff.setColor(255,255,255);
@@ -111,6 +111,7 @@ public class InvaderGameGUI extends GameGUI {
 		//g.drawImage(invaderpic,s.getX(),s.getY(),Graphics.TOP | Graphics.LEFT);
 		if (lastdraw>5)
 			lastdraw = 0;
+		
 		g.drawImage(i_invaders_a[InvadersSettings.I_INVADER_A_EXPL][lastdraw++],10,20,Graphics.TOP | Graphics.LEFT);
 		
 	}

@@ -45,8 +45,7 @@ public class InvadersSettings {
 	public static Object [] DESC_SOUNDSET_L2 = {null,DESC_INVADER_B,DESC_TANK};
 	public static Object [] DESC_SOUNDSET_L3 = {DESC_INVADER_A,DESC_INVADER_B,DESC_TANK};
 	
-	
-	
+
 	
 	public static final int I_INVADER_A_IMAGESET = 0;
 	public static final int I_INVADER_A_EXPL = 0;
