@@ -128,4 +128,12 @@ public class InvaderGameMachine extends GameMachine {
 	public void showStartScreen() {
 		display.setCurrent(igui);		
 	}
+
+	/* (non-Javadoc)
+	 * @see gamemachine.GameMachine#execute(int)
+	 */
+	public void execute(int command) {
+		
+		
+	}
 }

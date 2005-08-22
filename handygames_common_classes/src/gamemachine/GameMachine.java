@@ -29,6 +29,8 @@ public abstract class GameMachine {
 	public static final int UPRIGHT = 8;
 	
 	
+	public static final int STARTGAME = 0;
+	
 	public static final int GAMEON = 1;
 	public static final int GAMEOFF = 2;
 	
@@ -83,6 +85,8 @@ public abstract class GameMachine {
 	public abstract void exit();
 	
 	public abstract void showStartScreen();
+	
+	public abstract void execute(int command);
 	
 
 }

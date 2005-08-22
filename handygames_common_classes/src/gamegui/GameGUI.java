@@ -61,5 +61,4 @@ public abstract class GameGUI extends GameCanvas implements CommandListener{
 		this.screen_width = screen_width2;
 		
 	}
-
 }
