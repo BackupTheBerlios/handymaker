@@ -60,6 +60,7 @@ public class InvadersSettings {
 	public static final int I_TANKMOVE = 1;
 	
 
+
 	/** Für den Invadertyp A */
 	public static String DESC_INVADER_A_IMAGESET  [][] = {{"1.PNG","2.PNG","3.PNG","4.PNG","5.PNG","6.PNG"},{"inv_move1.png","inv_move2.png"}};
 
@@ -67,7 +68,7 @@ public class InvadersSettings {
 	public static String DESC_INVADER_B_IMAGESET  [][] = {{"inv_expl1.png","inv_expl2.png"},{"inv_move1.png","inv_move2.png"}};
 	/** Der Tank*/
 	public static String DESC_TANKIMAGESET [][] = {{"tan_expl1.png","tan_expl2.png"},{"tan_move1.png","tan_move2.png"}};
-	
+
 	/**
 	 * Imagesets für level 1
 	 */

@@ -38,7 +38,7 @@ public class InvaderGameGUI extends GameGUI implements Runnable {
 	private boolean fireswitch = true;
 	private Command exit = null;
 	
-	private boolean go = false;
+	private boolean go = true;
 	
 	private InvaderGameMachine igm = null;
 	
@@ -131,7 +131,9 @@ public class InvaderGameGUI extends GameGUI implements Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
+		System.out.println("printing started.");
 		while (go) {
+			System.out.println("print.");
 			freeze();
 			repaint();
 		}

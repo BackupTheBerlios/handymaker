@@ -109,11 +109,12 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 		
 		nextLevel();
 		getCurrentDisplay().setCurrent(igui);
-		
+		System.out.println("init play.");
 	}
 	
 	private synchronized void startPlay() {
 		igui.go();
+		System.out.println("start play.");	
 	}
 
 	private synchronized void pausePlay() {
