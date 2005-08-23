@@ -8,6 +8,9 @@ package invadergamemachine;
 
 import java.io.IOException;
 
+import javax.microedition.lcdui.Image;
+
+import gamegui.guitemplates.GameList;
 import gamemachine.GameMachine;
 import gamemachine.ResourceLoader;
 import gamemachine.level.Level;
@@ -22,42 +25,35 @@ import invaders.InvadersSettings;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class InvaderGameMachine extends GameMachine {
+public class InvaderGameMachine extends GameMachine implements Runnable {
 	public static final int INVADER = 1;
 	public static final int TANK = 2;
 	
+	private Thread iguiThread = null;
 	private InvaderGameGUI igui = null;
 
 	private Level [] levels = null;
 	private int currLevelIndex = 0;
 
-	private static int gameState = GAMEON;
+	public static int gameState = GAMEON;
 	
+	private GameList startScreen = null;
 	/**
 	 * 
 	 */
 	public InvaderGameMachine(Invaders invaders) {
 		super(invaders);
-		
-		igui = new InvaderGameGUI(this);
-		igui.setFullScreenMode(true);
-		
-		display.setCurrent(igui);
-		
-		
-		screen_width = igui.getWidth();
-		screen_height = igui.getHeight();
 
-		igui.setHeight(screen_height);
-		igui.setWidth(screen_width);
 
 		defineLevel();
-		setSpeed(3000);
+		setSpeed(1000);
 		
-		nextLevel();
+		showStartScreen();
+
+		//startPlay();
 	}
 
-	public void nextLevel() {
+	private void nextLevel() {
 		setCurrLevel(levels[currLevelIndex++]);
 
 		try {
@@ -91,20 +87,39 @@ public class InvaderGameMachine extends GameMachine {
 
 	public void startGame() {
 		showStartScreen();
-		
-		startGameprocess();
 	}
 
-	private synchronized void startGameprocess() {
-		while (gameState == GAMEON) {
+	private void initPlay() {
+		igui = new InvaderGameGUI(this);
+		
+		iguiThread = new Thread(igui);
+		iguiThread.start();		
+		
+		nextLevel();
+		getCurrentDisplay().setCurrent(igui);
+		
+	}
+	
+	private synchronized void startPlay() {
+		igui.go();
+	}
 
-			igui.repaint();
-			freeze();
+	private synchronized void pausePlay() {
+		igui.dontGo();
+	}
+	
+	private synchronized void destroyPlay() {
+		try {
+			iguiThread.join();
+			igui = null;
+			iguiThread = null;
+			System.gc();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
-
-
 	public void action(int keyCode) {
 		if (LEFT == keyCode)
 			;
@@ -124,16 +139,34 @@ public class InvaderGameMachine extends GameMachine {
 		
 	}
 
-
 	public void showStartScreen() {
-		display.setCurrent(igui);		
+		Image background = null;
+		try {
+			background = Image.createImage(InvadersSettings.background);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		startScreen = new GameList(this,false,background,InvadersSettings.OPTIONS);
+		getCurrentDisplay().setCurrent(startScreen);		
 	}
 
 	/* (non-Javadoc)
 	 * @see gamemachine.GameMachine#execute(int)
 	 */
 	public void execute(int command) {
-		
+		if (command == InvadersSettings.START) {
+			initPlay();
+			startPlay();
+		}	
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	public void run() {
+		// TODO Auto-generated method stub
 		
 	}
 }

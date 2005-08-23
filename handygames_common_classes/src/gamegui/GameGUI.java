@@ -24,9 +24,7 @@ public abstract class GameGUI extends GameCanvas implements CommandListener{
 	private GameMachine gm = null;
 	protected Level currLevel = null;
 	
-	
-	protected int screen_width;
-	protected int screen_height;
+	private int speed = 3000;
 	
 	/**
 	 * @param arg0
@@ -37,6 +35,20 @@ public abstract class GameGUI extends GameCanvas implements CommandListener{
 		// TODO Auto-generated constructor stub
 	}
 
+
+	public synchronized void freeze() {
+		try {
+			wait(speed);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public void setSpeed(int speed) {
+		this.speed = speed;
+	}
+	
 	public void loadNewLevel() {
 		currLevel = gm.getCurrLevel();
 	}
@@ -45,20 +57,4 @@ public abstract class GameGUI extends GameCanvas implements CommandListener{
 	 * @see javax.microedition.lcdui.CommandListener#commandAction(javax.microedition.lcdui.Command, javax.microedition.lcdui.Displayable)
 	 */
 	public abstract void commandAction(Command arg0, Displayable arg1);
-
-	/**
-	 * @param screen_height
-	 */
-	public void setHeight(int screen_height) {
-		this.screen_height = screen_height;
-		
-	}
-
-	/**
-	 * @param screen_width2
-	 */
-	public void setWidth(int screen_width2) {
-		this.screen_width = screen_width2;
-		
-	}
 }

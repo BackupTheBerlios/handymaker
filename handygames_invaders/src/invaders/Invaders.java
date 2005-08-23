@@ -22,16 +22,11 @@ import javax.microedition.midlet.MIDletStateChangeException;
  * Window - Preferences - Java - Code Style - Code Templates
  */
 public class Invaders extends MIDlet implements Game {
-
-	
-	private Display display = null;
 	private InvaderGameMachine igm = null;
 	
 	public Invaders() {
 		super();
-		display = Display.getDisplay(this);
 		igm = new InvaderGameMachine(this);
-		
 	}
 
 	protected void startApp() throws MIDletStateChangeException {
@@ -42,7 +37,7 @@ public class Invaders extends MIDlet implements Game {
 	}
 
 	public Display getCurrentDisplay() {
-		return display;
+		return Display.getDisplay(this);
 	}
 	
 	protected void destroyApp(boolean arg0) throws MIDletStateChangeException {

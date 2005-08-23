@@ -16,7 +16,7 @@ import com.sun.midp.midlet.Scheduler;
 
 import tools.StringTools;
 
-public abstract class GameList extends GameCanvas implements CommandListener{
+public class GameList extends GameCanvas implements CommandListener, Runnable{
 	private GameMachine gameMachine = null;
 	
 	private Image background = null;
@@ -145,5 +145,13 @@ public abstract class GameList extends GameCanvas implements CommandListener{
 	
 	private void fire() {
 		gameMachine.execute(indexOfChosen);
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	public void run() {
+		// TODO Auto-generated method stub
+		
 	}
 }

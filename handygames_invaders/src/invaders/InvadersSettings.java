@@ -84,4 +84,11 @@ public class InvadersSettings {
 	public static Object [][] IMAGESETS_L3  = {{new Integer(I_INVADER_A_IMAGESET),DESC_INVADER_A_IMAGESET},{new Integer(I_INVADER_B_IMAGESET),DESC_INVADER_B_IMAGESET},{new Integer(I_TANKIMAGESET),DESC_TANKIMAGESET}};
 	
 	
+	public static int START = 0;
+	public static int HIGHSCORE = 1;
+	public static int QUIT = 2;
+	public static String OPTIONS [] = {"Start","Highscore","Quit"};
+	public static String background = "/images/3.PNG";
+	
+	
 }

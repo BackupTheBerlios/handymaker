@@ -7,6 +7,7 @@
 package invadergamegui;
 
 import gamegui.GameGUI;
+import gamegui.guitemplates.GameList;
 import gamemachine.level.Level;
 import invadergamemachine.InvaderGameMachine;
 import invaders.InvadersSettings;
@@ -14,6 +15,7 @@ import invaders.InvadersSettings;
 import java.util.Vector;
 
 import javax.microedition.lcdui.Command;
+import javax.microedition.lcdui.Display;
 import javax.microedition.lcdui.Displayable;
 import javax.microedition.lcdui.Graphics;
 import javax.microedition.lcdui.Image;
@@ -25,7 +27,7 @@ import javax.microedition.lcdui.Image;
  * TODO To change the template for this generated type comment go to
  * Window - Preferences - Java - Code Style - Code Templates
  */
-public class InvaderGameGUI extends GameGUI {
+public class InvaderGameGUI extends GameGUI implements Runnable {
 	
 	private Image [][] i_invaders_a = null;
 	private Image [][] i_invaders_b = null;
@@ -34,10 +36,17 @@ public class InvaderGameGUI extends GameGUI {
 	private boolean fireswitch = true;
 	private Command exit = null;
 	
+	private boolean go = false;
+	
 	private InvaderGameMachine igm = null;
 	
+	public void go() {
+		go = true;
+	}
 	
-
+	public void dontGo() {
+		go = false;
+	}
 	/**
 	 * @param igc
 	 * 
@@ -46,11 +55,13 @@ public class InvaderGameGUI extends GameGUI {
 		super(igm, false);
 		this.igm = igm;
 		
-		exit = new Command("exit",Command.EXIT,1);
-		addCommand(exit);
+		//exit = new Command("exit",Command.EXIT,1);
+		//addCommand(exit);
 		setCommandListener(this);
 		
 	}
+
+
 	
 	public void loadNewLevel() {
 		super.loadNewLevel();
@@ -64,7 +75,6 @@ public class InvaderGameGUI extends GameGUI {
 	protected void keyReleased(int keyCode) {
 		int command = InvaderGameMachine.NOCMD;
 		int key = getKeyStates();
-
 		
 		switch (key) {
 			case LEFT_PRESSED : command = InvaderGameMachine.LEFT; break;
@@ -78,14 +88,12 @@ public class InvaderGameGUI extends GameGUI {
 	
 	public void paint(Graphics g) {
 		// image vorher erzeugen um damit den gc aufruf zu sparen
-		Image i_buff = Image.createImage(screen_width,screen_height);
+		Image i_buff = Image.createImage(getWidth(),getHeight());
 		Graphics g_buff = i_buff.getGraphics();
 
 		g_buff.setColor(0,0,0);
-		g_buff.fillRect(0,0,screen_width,screen_height);
+		g_buff.fillRect(0,0,getWidth(),getHeight());
 		g_buff.setColor(255,255,255);
-
-		
 		
 		if (g_buff != null) {
 			// INVADERS
@@ -116,4 +124,14 @@ public class InvaderGameGUI extends GameGUI {
 		
 	}
 
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Runnable#run()
+	 */
+	public void run() {
+		while (go) {
+			freeze();
+			repaint();
+		}
+	}
 }

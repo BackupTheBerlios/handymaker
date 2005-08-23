@@ -10,6 +10,7 @@ import gamemachine.level.Level;
 import games.Game;
 
 import javax.microedition.lcdui.Display;
+import javax.microedition.lcdui.Displayable;
 
 
 /**
@@ -37,20 +38,18 @@ public abstract class GameMachine {
 	protected Level currLevel = null;
 	
 	
-	protected Display display = null;
 	protected Game game = null;
 	
-	public int screen_width;
-	public int screen_height;
-	
 	protected int speed = 0;
+	
+	protected Display display = null;
 
 	/**
 	 * 
 	 */
-	protected void freeze() {
+	protected synchronized void freeze() {
 		try {
-			wait(speed);
+			wait(1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -63,10 +62,13 @@ public abstract class GameMachine {
 		super();
 		
 		this.game = game;
-		display = game.getCurrentDisplay();
-		
+		this.display = game.getCurrentDisplay();
 	}
 
+	public Display getCurrentDisplay() {
+		return game.getCurrentDisplay();
+	}
+	
 	public Level getCurrLevel() {
 		return currLevel;
 	}
@@ -79,6 +81,7 @@ public abstract class GameMachine {
 		this.speed = speed;
 		
 	}
+	
 	
 	public abstract void action(int keyCode);
 

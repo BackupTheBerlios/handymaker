@@ -16,6 +16,10 @@ public class Level {
 	public Object [][] imagesToLoad = null;
 	public Object [] soundsToLoad = null;
 	
+	public boolean isLoading() {
+		return false;
+	}
+	
 	public Object [] getImageSets() {
 		return resourceLoader.getImageSets();
 	}
