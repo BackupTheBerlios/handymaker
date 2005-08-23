@@ -8,8 +8,14 @@ package invadergamemachine;
 
 import java.io.IOException;
 
+import javax.microedition.lcdui.Displayable;
+import javax.microedition.lcdui.Form;
 import javax.microedition.lcdui.Image;
+import javax.microedition.lcdui.Item;
+import javax.microedition.lcdui.List;
+import javax.microedition.lcdui.game.GameCanvas;
 
+import gamegui.GameGUI;
 import gamegui.guitemplates.GameList;
 import gamemachine.GameMachine;
 import gamemachine.ResourceLoader;
@@ -32,12 +38,14 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	private Thread iguiThread = null;
 	private InvaderGameGUI igui = null;
 
+	private GameList startScreen = null;
+	
 	private Level [] levels = null;
 	private int currLevelIndex = 0;
 
 	public static int gameState = GAMEON;
 	
-	private GameList startScreen = null;
+
 	/**
 	 * 
 	 */
@@ -48,11 +56,15 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 		defineLevel();
 		setSpeed(1000);
 		
-		showStartScreen();
+		
+		//showStartScreen();
+
 
 		//startPlay();
 	}
 
+
+	
 	private void nextLevel() {
 		setCurrLevel(levels[currLevelIndex++]);
 
@@ -147,9 +159,12 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 		startScreen = new GameList(this,false,background,InvadersSettings.OPTIONS);
-		getCurrentDisplay().setCurrent(startScreen);		
+		startScreen.centralizeX();
+		getCurrentDisplay().setCurrent(startScreen);
+		
+
 	}
 
 	/* (non-Javadoc)

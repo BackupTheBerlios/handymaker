@@ -29,7 +29,6 @@ public abstract class GameMachine {
 	public static final int UPLEFT = 7;
 	public static final int UPRIGHT = 8;
 	
-	
 	public static final int STARTGAME = 0;
 	
 	public static final int GAMEON = 1;
@@ -65,6 +64,7 @@ public abstract class GameMachine {
 		this.display = game.getCurrentDisplay();
 	}
 
+	
 	public Display getCurrentDisplay() {
 		return game.getCurrentDisplay();
 	}

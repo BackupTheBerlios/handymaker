@@ -33,6 +33,8 @@ public class InvaderGameGUI extends GameGUI implements Runnable {
 	private Image [][] i_invaders_b = null;
 	private Image [][] i_tank = null;
 	
+
+	
 	private boolean fireswitch = true;
 	private Command exit = null;
 	
@@ -101,7 +103,7 @@ public class InvaderGameGUI extends GameGUI implements Runnable {
 		}
 
 		System.gc();
-		
+
     	g.drawImage(i_buff, 0, 0, Graphics.TOP | Graphics.LEFT);
 	}
 	
@@ -120,7 +122,7 @@ public class InvaderGameGUI extends GameGUI implements Runnable {
 		if (lastdraw>5)
 			lastdraw = 0;
 		
-		g.drawImage(i_invaders_a[InvadersSettings.I_INVADER_A_EXPL][lastdraw++],10,20,Graphics.TOP | Graphics.LEFT);
+		g.drawImage(i_invaders_a[InvadersSettings.I_INVADER_A_EXPL][lastdraw++],0,0,Graphics.TOP | Graphics.LEFT);
 		
 	}
 

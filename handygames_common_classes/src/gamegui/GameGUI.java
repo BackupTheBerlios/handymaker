@@ -26,6 +26,7 @@ public abstract class GameGUI extends GameCanvas implements CommandListener{
 	
 	private int speed = 3000;
 	
+
 	/**
 	 * @param arg0
 	 */

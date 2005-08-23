@@ -34,7 +34,6 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 	private int chosen_g = 255;
 	private int chosen_b = 255;
 	
-	
 	private Command exit = null;
 	
 	private int indexOfChosen = 0;
