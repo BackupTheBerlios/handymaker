@@ -1,4 +1,4 @@
-package src.GameWorld;
+package gameworld;
 
 public class SimpleEntity
 {
