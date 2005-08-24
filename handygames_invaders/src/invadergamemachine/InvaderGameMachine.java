@@ -14,6 +14,7 @@ import javax.microedition.lcdui.Image;
 import javax.microedition.lcdui.Item;
 import javax.microedition.lcdui.List;
 import javax.microedition.lcdui.game.GameCanvas;
+import javax.microedition.media.MediaException;
 
 import gamegui.GameGUI;
 import gamegui.guitemplates.GameList;
@@ -65,7 +66,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 
 
 	
-	private void nextLevel() {
+	private void nextLevel()  {
 		setCurrLevel(levels[currLevelIndex++]);
 
 		try {
@@ -80,6 +81,9 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (MediaException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	}
 	
@@ -91,9 +95,9 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 		
 		levels = new Level[3];
 		
-		levels[0] = new Level(1,"",InvadersSettings.IMAGESETS_L1,InvadersSettings.DESC_SOUNDSET_L1,r);
-		levels[1] = new Level(2,"",InvadersSettings.IMAGESETS_L2,InvadersSettings.DESC_SOUNDSET_L2, r);
-		levels[2] = new Level(3,"",InvadersSettings.IMAGESETS_L3,InvadersSettings.DESC_SOUNDSET_L3,r);
+		levels[0] = new Level(1,"",InvadersSettings.IMAGESETS_L1,InvadersSettings.DESC_SOUNDSET_L1tmp,r);
+		levels[1] = new Level(2,"",InvadersSettings.IMAGESETS_L2,InvadersSettings.DESC_SOUNDSET_L2tmp,r);
+		levels[2] = new Level(3,"",InvadersSettings.IMAGESETS_L3,InvadersSettings.DESC_SOUNDSET_L3tmp,r);
 		
 	}
 
@@ -101,7 +105,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 		showStartScreen();
 	}
 
-	private void initPlay() {
+	private void initPlay()  {
 		igui = new InvaderGameGUI(this);
 		
 		iguiThread = new Thread(igui);
