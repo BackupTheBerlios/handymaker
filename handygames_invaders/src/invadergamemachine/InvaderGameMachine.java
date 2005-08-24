@@ -166,6 +166,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 		}
 
 		startScreen = new GameList(this,false,background,InvadersSettings.OPTIONS);
+		startScreen.setChoseTextColor(255,255,255);
 		startScreen.centralizeX();
 		getCurrentDisplay().setCurrent(startScreen);
 		

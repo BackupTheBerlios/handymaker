@@ -58,7 +58,7 @@ public class Level {
 	
 	public void activateLevel() throws IOException, MediaException {
 		resourceLoader.loadImageSets(imagesToLoad);
-		resourceLoader.loadSounds(soundsToLoad);
+		//resourceLoader.loadSounds(soundsToLoad);
 	}
 		
 	public Object getSoundByName(String name) {
