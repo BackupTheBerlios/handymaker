@@ -7,9 +7,12 @@
 package gamemachine;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Vector;
 
 import javax.microedition.lcdui.Image;
+import javax.microedition.media.Manager;
+import javax.microedition.media.MediaException;
 import javax.microedition.media.Player;
 
 import tools.ArrayTools;
@@ -20,7 +23,7 @@ import tools.ArrayTools;
  * @author Star
  */
 public class ResourceLoader {
-	private Player [] sounds = null;
+	private Object [][] soundSets = null;
 	
 	private Object [][] imageSets = null;
 	
@@ -58,10 +61,20 @@ public class ResourceLoader {
 		}
 	}
 	
-	public void loadSounds(Object [] sound_desc) {
+	public void loadSounds(Object [][] sound_desc) throws IOException, MediaException {
+		soundSets = new Object [sound_desc.length][2];
 		for (int i=0; i<sound_desc.length; i++) {
-			String [] sounds = (String []) sound_desc[i];
-			System.out.println(ArrayTools.getArrayPrint(sounds));
+			String [][] sounds = (String [][]) sound_desc[i];
+			int maxlength = ArrayTools.arrayMaxWidth(sounds);
+			Player [][] soundSet = new Player [sounds.length][maxlength];
+			
+			for (int j=0; i<sounds.length; j++)
+				for (int k=0; k<sounds[i].length; k++) {
+					  InputStream is = getClass().getResourceAsStream(SOUNDROOT+ sounds [j][k]);
+					  soundSet [j][k] = Manager.createPlayer (is, "audio/x-wav");
+				}
+			soundSets [i][0] = sound_desc [i][0];
+			soundSets [i][1] = soundSet;
 			
 		}
 		
@@ -77,7 +90,7 @@ public class ResourceLoader {
 	}
 
 	public void flushSounds() {
-		sounds = null;
+		soundSets = null;
 		System.gc();
 	}
 	
@@ -86,14 +99,21 @@ public class ResourceLoader {
 		flushImages();
 	}
 	
-	public Player [] getSounds() {
-		return sounds;
+	public Object [] getSounds() {
+		return soundSets;
 	}
 
 	public Image[][] getImageSet(int id) {
 		for (int i=0; i<imageSets.length;i++)
 			if (((Integer)imageSets[i][0]).intValue() == id)
 				return (Image [][]) imageSets[i][1];
+		return null;
+	}
+	
+	public Player [][] getSoundSet (int id) {
+		for (int i=0; i<soundSets.length; i++)
+			if (((Integer)soundSets[i][0]).intValue()==id)
+			    return (Player [][]) soundSets [i][1];
 		return null;
 	}
 }
