@@ -1,5 +1,6 @@
 package invadersound;
 
+import javax.microedition.media.MediaException;
 import javax.microedition.media.Player;
 
 import sound.SoundMachine;
@@ -16,9 +17,15 @@ public class InvaderSoundMachine extends SoundMachine {
     	gm =g; 
     }
 	public void playfromResource (Entity e) {
-		int soundSetID = e.getSoundSet();
-		int soundID    = e.getSoundNumber();
+		//int soundSetID = e.getSoundSet();
+		//int soundID    = e.getSoundNumber();
 	    level = gm.getCurrLevel();
 		Player [][] player = level.getSounds(e.getSoundSet());
+		try {
+			player [e.getSoundNumber()][0].start();
+		} catch (MediaException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 	}
 }
