@@ -159,7 +159,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	public void showStartScreen() {
 		Image background = null;
 		try {
-			background = Image.createImage(InvadersSettings.background);
+			background = Image.createImage(ResourceLoader.IMAGEROOT+InvadersSettings.background);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
