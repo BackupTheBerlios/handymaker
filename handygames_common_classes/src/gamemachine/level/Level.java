@@ -3,6 +3,7 @@ package gamemachine.level;
 import java.io.IOException;
 
 import javax.microedition.lcdui.Image;
+import javax.microedition.media.MediaException;
 import javax.microedition.media.Player;
 
 import gamemachine.ResourceLoader;
@@ -14,7 +15,7 @@ public class Level {
 	
 	public String desc = null;	
 	public Object [][] imagesToLoad = null;
-	public Object [] soundsToLoad = null;
+	public Object [][] soundsToLoad = null;
 	
 	public boolean isLoading() {
 		return false;
@@ -32,7 +33,7 @@ public class Level {
 		return imagesToLoad;
 	}
 	
-	public Object [] getSoundDesc() {
+	public Object [][] getSoundDesc() {
 		return soundsToLoad;
 	}
 	
@@ -42,11 +43,11 @@ public class Level {
 	 * <br>object[0][1] = <Sound>
 	 * @return
 	 */
-	public Player [] getSounds() {
-		return resourceLoader.getSounds();
+	public Player [][] getSounds(int id) {
+		return resourceLoader.getSoundSet(id);
 	}
 	
-	public Level(int nr, String desc, Object [][] imagesToLoad, Object [] soundsToLoad, ResourceLoader resourceLoader) {
+	public Level(int nr, String desc, Object [][] imagesToLoad, Object [][] soundsToLoad, ResourceLoader resourceLoader) {
 		this.resourceLoader = resourceLoader;
 		this.nr = nr;
 		this.desc = desc;
@@ -55,7 +56,7 @@ public class Level {
 		this.soundsToLoad = soundsToLoad;
 	}
 	
-	public void activateLevel() throws IOException {
+	public void activateLevel() throws IOException, MediaException {
 		resourceLoader.loadImageSets(imagesToLoad);
 		resourceLoader.loadSounds(soundsToLoad);
 	}
