@@ -27,8 +27,8 @@ public class ResourceLoader {
 	
 	private Object [][] imageSets = null;
 	
-	private static final String IMAGEROOT = "/images/";
-	private static final String SOUNDROOT = "/sound/";
+	public static final String IMAGEROOT = "/media_images/";
+	public static final String SOUNDROOT = "/media_sound/";
 	
 	
 	public Object[] getImageSets() {

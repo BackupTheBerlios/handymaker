@@ -6,6 +6,8 @@
  */
 package invaders;
 
+import gamemachine.ResourceLoader;
+
 /**
  * @author Star
  *
@@ -93,7 +95,7 @@ public class InvadersSettings {
 	public static int HIGHSCORE = 1;
 	public static int QUIT = 2;
 	public static String OPTIONS [] = {"Start","Highscore","Quit"};
-	public static String background = "/images/3.PNG";
+	public static String background = ResourceLoader.IMAGEROOT+"3.PNG";
 	
 	
 }
