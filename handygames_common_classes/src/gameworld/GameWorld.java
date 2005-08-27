@@ -145,5 +145,11 @@ public class GameWorld
 		m_Status=STATUS_END;
 		return 0;
 	}
+
+	public void command(int command) {
+		// TODO Auto-generated method stub
+		System.out.println(command);
+		
+	}
 	
 }

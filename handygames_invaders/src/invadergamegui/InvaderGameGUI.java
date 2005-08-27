@@ -33,6 +33,7 @@ public class InvaderGameGUI extends GameGUI implements Runnable {
 	private Image [][] i_invaders_b = null;
 	private Image [][] i_tank = null;
 	
+ 
 
 	
 	private boolean fireswitch = true;
@@ -83,7 +84,9 @@ public class InvaderGameGUI extends GameGUI implements Runnable {
 			case RIGHT_PRESSED : command = InvaderGameMachine.RIGHT; break;
 			case FIRE_PRESSED : command = InvaderGameMachine.FIRE; break;
 		}
-
+		
+		gameWorld.command(command);
+		
 		igm.action(command);
 
 	}

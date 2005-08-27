@@ -8,6 +8,7 @@ package gamegui;
 
 import gamemachine.GameMachine;
 import gamemachine.level.Level;
+import gameworld.GameWorld;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -24,6 +25,8 @@ public abstract class GameGUI extends GameCanvas implements CommandListener{
 	private GameMachine gm = null;
 	protected Level currLevel = null;
 	
+	protected GameWorld gameWorld = null;
+	
 	private int speed = 3000;
 	
 
@@ -33,6 +36,7 @@ public abstract class GameGUI extends GameCanvas implements CommandListener{
 	public GameGUI(GameMachine gm, boolean arg0) {
 		super(arg0);
 		this.gm = gm;
+		gm.getGameWorld();
 		// TODO Auto-generated constructor stub
 	}
 

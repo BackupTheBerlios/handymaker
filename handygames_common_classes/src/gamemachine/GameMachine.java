@@ -91,5 +91,10 @@ public abstract class GameMachine {
 	
 	public abstract void execute(int command);
 	
+	public void getGameWorld() {
+		// TODO Auto-generated method stub
+		
+	}
+	
 
 }
