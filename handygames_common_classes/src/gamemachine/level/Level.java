@@ -6,7 +6,11 @@ import javax.microedition.lcdui.Image;
 import javax.microedition.media.MediaException;
 import javax.microedition.media.Player;
 
+import tools.ArrayTools;
+import tools.ConfigStorage;
+
 import gamemachine.ResourceLoader;
+import games.Settings;
 
 public class Level {
 	private ResourceLoader resourceLoader = null;
@@ -16,6 +20,8 @@ public class Level {
 	public String desc = null;	
 	public Object [][] imagesToLoad = null;
 	public Object [][] soundsToLoad = null;
+	
+	private ConfigStorage configStorage = null;
 	
 	public boolean isLoading() {
 		return false;
@@ -47,18 +53,23 @@ public class Level {
 		return resourceLoader.getSoundSet(id);
 	}
 	
-	public Level(int nr, String desc, Object [][] imagesToLoad, Object [][] soundsToLoad, ResourceLoader resourceLoader) {
-		this.resourceLoader = resourceLoader;
+	public int getNr() {
+		return nr;
+	}
+	
+	public Level(int nr, String desc, Object [][] imagesToLoad, Object [][] soundsToLoad) {
 		this.nr = nr;
 		this.desc = desc;
 		this.imagesToLoad = imagesToLoad;
-		this.resourceLoader = resourceLoader;
 		this.soundsToLoad = soundsToLoad;
 	}
 	
 	public void activateLevel() throws IOException, MediaException {
+		resourceLoader = new ResourceLoader();
+
 		resourceLoader.loadImageSets(imagesToLoad);
 		//resourceLoader.loadSounds(soundsToLoad);
+		loadLevelConfig();
 	}
 		
 	public Object getSoundByName(String name) {
@@ -75,5 +86,29 @@ public class Level {
 	
 	public void flushResources() {
 		resourceLoader.flushResources();
-	}	
+		resourceLoader = null;
+		configStorage = null;
+		
+		System.gc();
+	}
+	
+	public String getLevelStringValue(String property) {
+		return configStorage.getStringValue(property);
+	}
+	
+	public int getLevelIntValue(String property) {
+		return configStorage.getIntValue(property);
+	}
+	
+	public int [] getLevelIntArrayDim1(String property) {
+		return configStorage.getIntArrayDim1(property);
+	}
+	
+	public int [][] getLevelIntArrayDim2(String property) {
+		return configStorage.getIntArrayDim2(property);
+	}
+	
+	private void loadLevelConfig() throws IOException {
+		configStorage  = new ConfigStorage(Settings.LEVELPREFIX+getNr()+Settings.LEVELSUFFIX);
+	}
 }

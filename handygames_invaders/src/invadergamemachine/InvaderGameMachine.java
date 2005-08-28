@@ -16,6 +16,8 @@ import javax.microedition.lcdui.List;
 import javax.microedition.lcdui.game.GameCanvas;
 import javax.microedition.media.MediaException;
 
+import tools.ArrayTools;
+
 import gamegui.GameGUI;
 import gamegui.guitemplates.GameList;
 import gamemachine.GameMachine;
@@ -91,13 +93,11 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	 * 
 	 */
 	private void defineLevel() {
-		ResourceLoader r = new ResourceLoader();
-		
 		levels = new Level[3];
 		
-		levels[0] = new Level(1,"",InvadersSettings.IMAGESETS_L1,InvadersSettings.DESC_SOUNDSET_L1tmp,r);
-		levels[1] = new Level(2,"",InvadersSettings.IMAGESETS_L2,InvadersSettings.DESC_SOUNDSET_L2tmp,r);
-		levels[2] = new Level(3,"",InvadersSettings.IMAGESETS_L3,InvadersSettings.DESC_SOUNDSET_L3tmp,r);
+		levels[0] = new Level(1,"",InvadersSettings.IMAGESETS_L1,InvadersSettings.DESC_SOUNDSET_L1tmp);
+		levels[1] = new Level(2,"",InvadersSettings.IMAGESETS_L2,InvadersSettings.DESC_SOUNDSET_L2tmp);
+		levels[2] = new Level(3,"",InvadersSettings.IMAGESETS_L3,InvadersSettings.DESC_SOUNDSET_L3tmp);
 		
 	}
 
@@ -159,7 +159,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	public void showStartScreen() {
 		Image background = null;
 		try {
-			background = Image.createImage(ResourceLoader.IMAGEROOT+InvadersSettings.background);
+			background = Image.createImage(InvadersSettings.background);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

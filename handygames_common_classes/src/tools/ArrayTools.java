@@ -1,5 +1,9 @@
 package tools;
 
+import games.Settings;
+
+import java.util.Vector;
+
 public class ArrayTools {
 
 	/**
@@ -29,6 +33,18 @@ public class ArrayTools {
 		return print;
 	}
 	
+	public static String getArrayPrint(int [][] array) {
+		if (array == null)
+			return null;
+		String res = "";
+		for (int i=0; i<array.length;i++) {
+			res += "\n";
+			for (int j=0;j<array[i].length;j++)
+				res += " - "+array[i][j];
+		}
+		return res;
+	}
+	
 	public static String getArrayPrint(Object [] array) {
 		if (array == null)
 			return null;
@@ -39,5 +55,42 @@ public class ArrayTools {
 		return result;
 	}
 	
+	public static int [] convertToInt(String [] string) {
+		if (string == null)
+			return null;
+		
+		int [] result = new int[string.length];
+		for (int i=0; i<result.length;i++)
+			result[i] = Integer.parseInt(string[i]);
+		
+		return result;
+	}
 	
+	public static String [] convertToString(Vector vector) {
+		if (vector == null || vector.size() == 0)
+			return null;
+		String [] string = new String[vector.size()];
+		
+		for (int i=0; i<string.length;i++) 
+			string[i] = (String) vector.elementAt(i);
+		
+		return string;
+	}
+	
+	public static int [][] convertToIntDim2(String [][] string) {
+		if (string == null)
+			return null;
+		int [][] result = new int[string.length][string[1].length];
+		for (int i=0; i<result.length;i++) {
+			for (int j=0; j<result[i].length;j++) {
+				if (string[i][j] == null)
+					result[i][j] = Settings.NOVALUE;
+				else
+					result[i][j] = Integer.parseInt(string[i][j].trim());
+				
+			}
+		}
+		
+		return result;
+	}
 }

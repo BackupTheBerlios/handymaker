@@ -6,6 +6,8 @@
  */
 package gamemachine;
 
+import games.Settings;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Vector;
@@ -16,6 +18,7 @@ import javax.microedition.media.MediaException;
 import javax.microedition.media.Player;
 
 import tools.ArrayTools;
+import tools.FileReader;
 
 /**
  * Lädt Resourcen wie Images, Sounds etc.
@@ -29,6 +32,7 @@ public class ResourceLoader {
 	
 	public static final String IMAGEROOT = "/media_images/";
 	public static final String SOUNDROOT = "/media_sound/";
+	public static final String CONFIGS = "/config/";
 	
 	
 	public Object[] getImageSets() {
