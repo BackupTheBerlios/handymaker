@@ -1,4 +1,4 @@
-package gameworld;
+package src.GameWorld;
 
 public class GameWorld
 {
@@ -145,11 +145,9 @@ public class GameWorld
 		m_Status=STATUS_END;
 		return 0;
 	}
-
-	public void command(int command) {
-		// TODO Auto-generated method stub
-		System.out.println(command);
-		
-	}
 	
+	public int command(int p_command)
+	{
+		return 0;
+	}
 }
