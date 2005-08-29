@@ -61,4 +61,8 @@ public class InvadersGameWorld extends GameWorld
 	{
 		return 0;
 	}
+	
+	public int command(int p_command)
+	{
+	}
 }
