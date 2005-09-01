@@ -159,13 +159,17 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 
 	public void showStartScreen() {
 		ResourceLoader rl = new ResourceLoader();
-		Image background = null;
-		Image [] options = null;
+		
 		try {
-			background = rl.loadSimpleImage(InvadersSettings.DESC_BACKGROUND);
-			options = rl.loadImageArray(InvadersSettings.DESC_INVADER_STARTSCREEN_OPTIONS);
-			startScreen = new GameList(this,false,background,options,InvadersSettings.OPTIONS);
-			startScreen.setBorderColor(231,23,76);
+			Image background = background = rl.loadSimpleImage(InvadersSettings.DESC_BACKGROUND);
+			Image [] options = rl.loadImageArray(InvadersSettings.DESC_INVADER_STARTSCREEN_OPTIONS);
+			Image [] chosen_options = rl.loadImageArray(InvadersSettings.DESC_INVADERSTARTSCREEN_CHOSENOPTIONS); 
+			startScreen = new GameList(this,false,background,options,chosen_options,InvadersSettings.OPTIONS);
+			
+			
+//			startScreen = new GameList(this,false,background,options,InvadersSettings.OPTIONS);
+			startScreen.setBorderWidth(0);
+			startScreen.setBorderColor(255,255,255);
 			startScreen.centralizeXY();
 		} catch (IOException e) {
 			e.printStackTrace();

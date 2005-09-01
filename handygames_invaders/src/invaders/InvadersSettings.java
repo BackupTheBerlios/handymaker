@@ -72,7 +72,7 @@ public class InvadersSettings {
 	public static final int I_QUIT = 2;
 
 	public static final String DESC_BACKGROUND = "3.PNG";
-	
+	public static final String[] DESC_INVADERSTARTSCREEN_CHOSENOPTIONS = {"start_c.PNG","highscore_c.PNG","quit_c.PNG"};
 	public static String DESC_INVADER_STARTSCREEN_OPTIONS []= {"start.PNG","highscore.PNG","quit.PNG"};	
 
 	/** Für den Invadertyp A */

@@ -43,7 +43,8 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 	private int indexOfChosen = 0;
 
 	private Image i_background = null;
-
+	
+	private Image [] i_chosen_option = null;
 	private Image[] i_option = null;
 
 	private int border_b = 0;
@@ -67,6 +68,7 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 		this.chosen_g = chosen_g;
 		this.chosen_b = chosen_b;
 	}
+
 	
 	/**
 	 * @param arg0
@@ -75,7 +77,7 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 		super(arg0);
 		
 		if (i_option == null || options == null || i_option.length != options.length)
-			throw new GameException("Images array or Options array is null or their lengths aren't equal.");
+			throw new GameException("options array is null or options length is unequal to i_option length.");
 		
 		this.i_option = i_option;
 		this.i_background = i_background;
@@ -85,6 +87,15 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 		exit = new Command("exit",Command.EXIT,1);
 		addCommand(exit);
 		setCommandListener(this);
+	}
+	
+	public GameList(GameMachine gameMachine,boolean arg0, Image i_background, Image[] i_option, Image[] i_chosen_option, String[] options) throws GameException {
+		this(gameMachine, arg0, i_background, i_option, options);
+		if (i_chosen_option == null || i_chosen_option.length != i_option.length)
+			throw new GameException("options array is null or options length is unequal to i_option length.");
+		
+		this.i_chosen_option = i_chosen_option;
+					
 	}
 	
 	public void setSpaceBetweenChoice(int spaceBetweenChoice) {
@@ -139,8 +150,12 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 				if (i == indexOfChosen) {
 					g.setColor(border_r,border_g,border_b);
 					g.fillRect(startPosX-borderWidth,curry-borderWidth,i_option[i].getWidth()+(2*borderWidth),i_option[i].getHeight()+(2*borderWidth));
-				}
-				g.drawImage(i_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
+					if (i_chosen_option != null)
+						g.drawImage(i_chosen_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
+					else
+						g.drawImage(i_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
+				} else
+					g.drawImage(i_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
 				curry = curry+spaceBetweenChoice+i_option[i].getHeight();
 			}
 		} 
