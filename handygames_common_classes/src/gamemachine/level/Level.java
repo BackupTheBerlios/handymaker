@@ -32,7 +32,7 @@ public class Level {
 	}
 	
 	public Image[][] getImageSet(int id) {
-		return resourceLoader.getImageSet(id);
+		return resourceLoader.getLastImageSet(id);
 	}
 	
 	public Object [] getImageDesc() {

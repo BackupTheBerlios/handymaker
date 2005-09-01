@@ -65,9 +65,15 @@ public class InvadersSettings {
 	public static final int I_TANKEXPL = 0;
 	public static final int I_TANKMOVE = 1;
 	
-
 	
+	public static final int I_STARTSCREENIMAGESET = 3;
+	public static final int I_START = 0;
+	public static final int I_HIGHSCORE = 1;
+	public static final int I_QUIT = 2;
 
+	public static final String DESC_BACKGROUND = "3.PNG";
+	
+	public static String DESC_INVADER_STARTSCREEN_OPTIONS []= {"start.PNG","highscore.PNG","quit.PNG"};	
 
 	/** Für den Invadertyp A */
 	public static String DESC_INVADER_A_IMAGESET  [][] = {{"1.PNG","2.PNG","3.PNG","4.PNG","5.PNG","6.PNG"},{"inv_move1.png","inv_move2.png"}};

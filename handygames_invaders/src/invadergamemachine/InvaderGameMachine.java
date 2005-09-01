@@ -23,6 +23,7 @@ import gamegui.guitemplates.GameList;
 import gamemachine.GameMachine;
 import gamemachine.ResourceLoader;
 import gamemachine.level.Level;
+import games.GameException;
 import invadergamegui.InvaderGameGUI;
 import invaders.Invaders;
 import invaders.InvadersSettings;
@@ -157,20 +158,23 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	}
 
 	public void showStartScreen() {
+		ResourceLoader rl = new ResourceLoader();
 		Image background = null;
+		Image [] options = null;
 		try {
-			background = Image.createImage(InvadersSettings.background);
+			background = rl.loadSimpleImage(InvadersSettings.DESC_BACKGROUND);
+			options = rl.loadImageArray(InvadersSettings.DESC_INVADER_STARTSCREEN_OPTIONS);
+			startScreen = new GameList(this,false,background,options,InvadersSettings.OPTIONS);
+			startScreen.setBorderColor(231,23,76);
+			startScreen.centralizeXY();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (GameException e) {
 			e.printStackTrace();
 		}
-
-		startScreen = new GameList(this,false,background,InvadersSettings.OPTIONS);
-		startScreen.setChoseTextColor(255,255,255);
-		startScreen.centralizeX();
-		getCurrentDisplay().setCurrent(startScreen);
 		
-
+		startScreen.centralizeXY();
+		getCurrentDisplay().setCurrent(startScreen);
 	}
 
 	/* (non-Javadoc)

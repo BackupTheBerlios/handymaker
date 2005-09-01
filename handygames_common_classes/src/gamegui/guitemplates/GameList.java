@@ -1,7 +1,9 @@
 package gamegui.guitemplates;
 
 import gamemachine.GameMachine;
+import gamemachine.ResourceLoader;
 import games.Game;
+import games.GameException;
 
 import javax.microedition.lcdui.Command;
 import javax.microedition.lcdui.CommandListener;
@@ -19,14 +21,16 @@ import tools.StringTools;
 public class GameList extends GameCanvas implements CommandListener, Runnable{
 	private GameMachine gameMachine = null;
 	
-	private Image background = null;
 	private String [] options = null;
 
 	private int startPosX = 100;
 	private int startPosY = 100;
 	private int fontWidth = 7;
-	private int spaceBetweenChoice = 20;
+	private int fontHeight = 8;
+	private int spaceBetweenChoice = 5;
 
+	private int borderWidth = 4;
+	
 	private int norm_r = 0;
 	private int norm_g = 0;
 	private int norm_b = 0;
@@ -37,11 +41,25 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 	private Command exit = null;
 	
 	private int indexOfChosen = 0;
+
+	private Image i_background = null;
+
+	private Image[] i_option = null;
+
+	private int border_b = 0;
+	private int border_g = 0;
+	private int border_r = 0;
 	
 	public void setTextColor(int r,int g,int b) {
 		this.norm_r = r;
 		this.norm_g = g;
 		this.norm_b = b;
+	}
+	
+	public void setBorderColor(int r, int g, int b) {
+		this.border_r = r;
+		this.border_g=  g;
+		this.border_b = b;
 	}
 	
 	public void setChoseTextColor(int chosen_r, int chosen_g, int chosen_b) {
@@ -53,17 +71,20 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 	/**
 	 * @param arg0
 	 */
-	public GameList(GameMachine gameMachine, boolean arg0, Image background, String [] options) {
+	public GameList(GameMachine gameMachine, boolean arg0, Image i_background, Image[] i_option, String [] options) throws GameException{
 		super(arg0);
-		this.background = background;
+		
+		if (i_option == null || options == null || i_option.length != options.length)
+			throw new GameException("Images array or Options array is null or their lengths aren't equal.");
+		
+		this.i_option = i_option;
+		this.i_background = i_background;
 		this.options = options;
 		this.gameMachine = gameMachine;
 		
 		exit = new Command("exit",Command.EXIT,1);
 		addCommand(exit);
 		setCommandListener(this);
-		
-		
 	}
 	
 	public void setSpaceBetweenChoice(int spaceBetweenChoice) {
@@ -86,25 +107,43 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 	 * Nachdem display.setCurrent aufgerufen wurde, kann centralizeX aufgerufen werden.
 	 *
 	 */
-	public void centralizeX() {
-		startPosX = getWidth()/2-StringTools.getMaxWidthOfString(options)*fontWidth/2;
+	public void centralizeXY() {
+		if (i_option == null) {
+			startPosX = getWidth()/2-StringTools.getMaxWidthOfString(options)*fontWidth/2;
+			startPosY = getHeight()+options.length*(fontHeight+spaceBetweenChoice);
+		} else {
+			startPosX = getWidth()/2-i_option[0].getWidth()/2;
+			startPosY = getHeight()/2-(i_option.length*(spaceBetweenChoice+i_option[1].getHeight())/2);
+		}
 		repaint();
 	}
 	
+	public void setBorderWidth(int borderWidth) {
+		this.borderWidth = borderWidth;
+	}
+	
 	public void paint(Graphics g) {
-		if (background != null) {
-			g.drawImage(background,0,0,Graphics.TOP | Graphics.LEFT);
-			
-			
-			for (int i=0; i<options.length;i++) {
+		if (i_background != null) {
+			g.drawImage(i_background,0,0,Graphics.TOP | Graphics.LEFT);
+		}
+		
+		int curry = startPosY;
+		for (int i=0; i<options.length;i++) {
+			if (i_option == null) {
 				if (i == indexOfChosen)
 					g.setColor(chosen_r,chosen_g,chosen_b);
 				else 
 					g.setColor(norm_r,norm_g,norm_b);
-				
 				g.drawString(options[i],startPosX,startPosY+spaceBetweenChoice*i,Graphics.TOP | Graphics.LEFT);
+			} else {
+				if (i == indexOfChosen) {
+					g.setColor(border_r,border_g,border_b);
+					g.fillRect(startPosX-borderWidth,curry-borderWidth,i_option[i].getWidth()+(2*borderWidth),i_option[i].getHeight()+(2*borderWidth));
+				}
+				g.drawImage(i_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
+				curry = curry+spaceBetweenChoice+i_option[i].getHeight();
 			}
-		}
+		} 
 	}
 
 	/* (non-Javadoc)

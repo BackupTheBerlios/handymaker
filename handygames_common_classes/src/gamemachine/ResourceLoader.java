@@ -29,14 +29,32 @@ public class ResourceLoader {
 	private Object [][] soundSets = null;
 	
 	private Object [][] imageSets = null;
+	private Image lastSimpleImage = null;
+	private Image[] lastImageArray = null;
 	
 	public static final String IMAGEROOT = "/media_images/";
 	public static final String SOUNDROOT = "/media_sound/";
 	public static final String CONFIGS = "/config/";
+
 	
+	public Image getLastSimpleImage() {
+		return lastSimpleImage;
+	}
 	
 	public Object[] getImageSets() {
 		return imageSets;
+	}
+	
+	public Image loadSimpleImage(String image) throws IOException {
+		lastSimpleImage = Image.createImage(IMAGEROOT+image);
+		return lastSimpleImage;
+	}
+	
+	public Image[] loadImageArray(String [] images) throws IOException {
+		lastImageArray = new Image[images.length];
+		for (int i=0; i<images.length;i++)
+			lastImageArray[i] = Image.createImage(IMAGEROOT+images[i]);
+		return lastImageArray;
 	}
 	
 	
@@ -48,7 +66,7 @@ public class ResourceLoader {
 		// TODO Auto-generated constructor stub
 	}
 
-	public void loadImageSets(Object [][] imagesets) throws IOException {
+	public Object[][] loadImageSets(Object [][] imagesets) throws IOException {
 		imageSets = new Object[imagesets.length][2];
 		for (int i=0; i<imagesets.length; i++) {
 			String [][] imageSetDesc = (String [][]) imagesets[i][1];
@@ -63,6 +81,7 @@ public class ResourceLoader {
 			imageSets[i][0] = imagesets[i][0];
 			imageSets[i][1] = imageSet;
 		}
+		return imageSets;
 	}
 	
 	public void loadSounds(Object [][] sound_desc) throws IOException, MediaException {
@@ -107,7 +126,7 @@ public class ResourceLoader {
 		return soundSets;
 	}
 
-	public Image[][] getImageSet(int id) {
+	public Image[][] getLastImageSet(int id) {
 		for (int i=0; i<imageSets.length;i++)
 			if (((Integer)imageSets[i][0]).intValue() == id)
 				return (Image [][]) imageSets[i][1];
