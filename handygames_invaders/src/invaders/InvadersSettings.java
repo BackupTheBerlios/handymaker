@@ -39,9 +39,9 @@ public class InvadersSettings {
 	
 	
 
-	public static String DESC_INVADER_A [][]= {{"invA_fire.wav"},{"invA_explosion.wav"},{"invA_move.wav"}};
-	public static String DESC_INVADER_B [][]= {{"invB_fire.wav"},{"invB_explosion.wav"},{"invB_move.wav"}};
-	public static String DESC_TANK [][]= {{"tan_fire.wav"},{"tan_explosion.wav"},{"tan_move"}};
+	public static String DESC_INVADER_A [][]= {{"invA_fire.wav"},{"invA_expl.wav"},{"invA_move.wav"}};
+	public static String DESC_INVADER_B [][]= {{"invB_fire.wav"},{"invB_expl.wav"},{"invB_move.wav"}};
+	public static String DESC_TANK [][]= {{"tan_fire.wav"},{"tan_expl.wav"},{"tan_move.wav"}};
 	
 	
 	public static Object [][] DESC_SOUNDSET_L1 = {{new Integer(S_INVADERSOUNDSET_A),DESC_INVADER_A},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
