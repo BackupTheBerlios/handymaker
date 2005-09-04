@@ -87,20 +87,19 @@ public class ResourceLoader {
 	public void loadSounds(Object [][] sound_desc) throws IOException, MediaException {
 		soundSets = new Object [sound_desc.length][2];
 		for (int i=0; i<sound_desc.length; i++) {
-			String [][] sounds = (String [][]) sound_desc[i];
+			String [][] sounds = (String [][]) sound_desc[i] [1];
 			int maxlength = ArrayTools.arrayMaxWidth(sounds);
 			Player [][] soundSet = new Player [sounds.length][maxlength];
 			
-			for (int j=0; i<sounds.length; j++)
-				for (int k=0; k<sounds[i].length; k++) {
+			for (int j=0; j<sounds.length; j++)
+				for (int k=0; k<sounds[j].length; k++) {
 					  InputStream is = getClass().getResourceAsStream(SOUNDROOT+ sounds [j][k]);
 					  soundSet [j][k] = Manager.createPlayer (is, "audio/x-wav");
+					  soundSet [j][k].prefetch();
 				}
 			soundSets [i][0] = sound_desc [i][0];
-			soundSets [i][1] = soundSet;
-			
-		}
-		
+			soundSets [i][1] = soundSet;	
+		}	
 	}
 	
 	public Object getSound(String name) {
