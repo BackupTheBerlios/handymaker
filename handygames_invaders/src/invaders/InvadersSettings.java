@@ -106,4 +106,12 @@ public class InvadersSettings {
 	public static String background = ResourceLoader.IMAGEROOT+"3.PNG";
 	
 	
+	/** Für die config files*/
+	public static String INVADERCOUNT = "inv_count";
+	public static String INVADERPOSITIONPREFIX = "inv";
+	public static String INVADERPOSITIONSUFFIX = "_p";
+	
+	public static String INVADERMOVEMENTPREFIX = "inv";
+	public static String INVADERMOVEMENTSUFFIX = "_m";
+	
 }

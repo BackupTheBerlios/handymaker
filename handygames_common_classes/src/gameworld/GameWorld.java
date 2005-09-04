@@ -1,10 +1,14 @@
 package gameworld;
 
+import gamemachine.GameMachine;
+
 public class GameWorld
 {
 	private SimpleEntity m_Entity[];
 	private int m_Slot,m_LoopSlot;
 	private int m_Status;
+	
+	protected GameMachine gameMachine;
 	
 	public static final int ENTITYCOUNT=1024;
 	
@@ -12,8 +16,10 @@ public class GameWorld
 	public static final int STATUS_IDLE=0;
 	public static final int STATUS_RUNNING=1;
 	
-	public GameWorld()
+	public GameWorld(GameMachine gameMachine)
 	{
+		this.gameMachine = gameMachine;
+		
 		m_Entity=new SimpleEntity[ENTITYCOUNT];
 		m_Slot=0;
 		m_Status=STATUS_IDLE;

@@ -93,4 +93,16 @@ public class ArrayTools {
 		
 		return result;
 	}
+	
+	public static String getPrintOf(int [] array) {
+		if (array == null)
+			return null;
+		
+		String result = "";
+		
+		for (int i=0; i<array.length;i++)
+			result += " - "+array[i];
+		
+		return result;
+	}
 }

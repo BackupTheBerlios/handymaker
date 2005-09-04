@@ -36,7 +36,7 @@ public class ConfigStorage {
 	}
 	
 	public int getIntValue(String property) {
-		return Integer.parseInt(getStringValue(property));
+		return Integer.parseInt(getStringValue(property).trim());
 	}
 	
 	/**

@@ -27,6 +27,7 @@ import games.GameException;
 import invadergamegui.InvaderGameGUI;
 import invaders.Invaders;
 import invaders.InvadersSettings;
+import invadersgameworld.InvadersGameWorld;
 
 
 /**
@@ -41,7 +42,8 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	
 	private Thread iguiThread = null;
 	private InvaderGameGUI igui = null;
-
+	private InvadersGameWorld igw = null;
+	
 	private GameList startScreen = null;
 	
 	private Level [] levels = null;
@@ -75,6 +77,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 		try {
 			currLevel.activateLevel();
 			igui.loadNewLevel();
+			igw.loadNextLevel();
 			
 			// SOUND AKTIVIEREN
 			// soundEngine.loadResources();
@@ -108,6 +111,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 
 	private void initPlay()  {
 		igui = new InvaderGameGUI(this);
+		igw = new InvadersGameWorld(this);
 		
 		iguiThread = new Thread(igui);
 		iguiThread.start();		
