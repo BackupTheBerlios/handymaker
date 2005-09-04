@@ -68,7 +68,7 @@ public class Level {
 		resourceLoader = new ResourceLoader();
 
 		resourceLoader.loadImageSets(imagesToLoad);
-		resourceLoader.loadSounds(soundsToLoad);
+		//resourceLoader.loadSounds(soundsToLoad);
 		loadLevelConfig();
 	}
 		
