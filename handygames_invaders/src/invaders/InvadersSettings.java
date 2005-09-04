@@ -114,4 +114,7 @@ public class InvadersSettings {
 	public static String INVADERMOVEMENTPREFIX = "inv";
 	public static String INVADERMOVEMENTSUFFIX = "_m";
 	
+	public static String MISSIONDESCRIPTION = "m_desc";
+	public static String MISSIONTERMINATION = "m_term";
+	
 }
