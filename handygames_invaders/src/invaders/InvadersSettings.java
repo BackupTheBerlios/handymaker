@@ -39,17 +39,15 @@ public class InvadersSettings {
 	
 	
 
-	public static String DESC_INVADER_A [][]= {{"inv_fire.wav"},{"inv_explosion.wav"},{"inv_move.wav"}};
-	public static String DESC_INVADER_B [][]= {{"inv_fire.wav"},{"inv_explosion.wav"},{"inv_move.wav"}};
+	public static String DESC_INVADER_A [][]= {{"invA_fire.wav"},{"invA_explosion.wav"},{"invA_move.wav"}};
+	public static String DESC_INVADER_B [][]= {{"invB_fire.wav"},{"invB_explosion.wav"},{"invB_move.wav"}};
 	public static String DESC_TANK [][]= {{"tan_fire.wav"},{"tan_explosion.wav"},{"tan_move"}};
 	
 	
-	public static Object [][] DESC_SOUNDSET_L1tmp = {{new Integer(S_INVADERSOUNDSET_A),DESC_INVADER_A},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
-	public static Object [][] DESC_SOUNDSET_L2tmp = {{new Integer(S_INVADERSOUNDSET_B),DESC_INVADER_B},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
-	public static Object [][] DESC_SOUNDSET_L3tmp = {{new Integer(S_INVADERSOUNDSET_A),DESC_INVADER_A},{new Integer(S_INVADERSOUNDSET_B),DESC_INVADER_B},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
-	public static Object [] DESC_SOUNDSET_L1 = {DESC_INVADER_A,null,DESC_TANK};
-	public static Object [] DESC_SOUNDSET_L2 = {null,DESC_INVADER_B,DESC_TANK};
-	public static Object [] DESC_SOUNDSET_L3 = {DESC_INVADER_A,DESC_INVADER_B,DESC_TANK};
+	public static Object [][] DESC_SOUNDSET_L1 = {{new Integer(S_INVADERSOUNDSET_A),DESC_INVADER_A},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
+	public static Object [][] DESC_SOUNDSET_L2 = {{new Integer(S_INVADERSOUNDSET_B),DESC_INVADER_B},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
+	public static Object [][] DESC_SOUNDSET_L3 = {{new Integer(S_INVADERSOUNDSET_A),DESC_INVADER_A},{new Integer(S_INVADERSOUNDSET_B),DESC_INVADER_B},{new Integer(S_TANKSOUNDSET),DESC_TANK}};
+	
 	
 
 	
