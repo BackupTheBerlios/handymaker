@@ -8,6 +8,5 @@ public class InvaderSoundMachine extends SoundMachine {
 	
 	public InvaderSoundMachine (GameMachine g) {
 		super (g);
-	}
-	 
+	}	 
 }

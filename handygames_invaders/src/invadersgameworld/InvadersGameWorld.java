@@ -33,7 +33,6 @@ public class InvadersGameWorld extends GameWorld
 		System.out.println("Level ziel:"+l.getLevelStringValue(InvadersSettings.MISSIONDESCRIPTION));
 		System.out.println("Aliens vernichten:"+ArrayTools.getPrintOf(l.getLevelIntArrayDim1(InvadersSettings.MISSIONTERMINATION)));
 		
-		
 		for (int i=1; i<=invaderCount;i++) {
 			
 			System.out.println("\ninvader: "+i);
