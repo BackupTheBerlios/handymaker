@@ -9,7 +9,7 @@ public class TankEntity extends SimpleEntity {
 	private int shield = 0;
 	private int speed = 0;
 	private int live = 3;
-	private int points = 300;
+	private int points = 0;
     private GameMachine gm = null;
 	
 	private int shot_price;
