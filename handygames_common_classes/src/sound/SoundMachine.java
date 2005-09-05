@@ -12,12 +12,15 @@ public abstract class  SoundMachine {
 	private GameMachine gm = null;
 	private Level level =null;
 	
-    public SoundMachine (GameMachine g) {
-    	gm =g; 
+    public SoundMachine (GameMachine gm) {
+    	this.gm=gm; 
     }
-
-	public void playfromResource (Entity e) {
-	    level = gm.getCurrLevel();
+    
+    public void nextLevel () {
+        level = gm.getCurrLevel(); 	
+    }
+    
+	public void playFromResource (Entity e) {
 		Player [][] player = level.getSounds(e.getSoundSet());
 		try {
 			player [e.getSoundNumber()][0].start();
