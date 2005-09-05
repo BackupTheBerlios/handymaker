@@ -34,7 +34,7 @@ public class TankEntity extends SimpleEntity {
 	}
 	
 	/* preise könnten je nach updatetype und abhängig von z.b. current level
-	 * im spätern spielverlauf neu berechnet werden */
+	 * im späteren spielverlauf neu berechnet werden */
 	public void calculatePrices () {
 		int level = gm.getCurrLevel().nr;
 		live_price = 1000*level/2;
@@ -71,6 +71,26 @@ public class TankEntity extends SimpleEntity {
     	if (speed<3 && points>=speed_price) incrementable[3]= true;
     	return incrementable;	
     }
-}
+    
+    public int getLive () {
+    	return live;
+    }
+    
+    public int getShot () {
+    	return shot;
+    }
+    
+    public int getShield () {
+    	return shield;
+    }
+    
+    public int getSpeed () {
+    	return speed;
+    }
+    
+    public int getPoints () {
+    	return points;
+    }
+ }
 
 
