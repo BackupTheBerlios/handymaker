@@ -7,19 +7,26 @@ public class GameWorld
 	private SimpleEntity m_Entity[];
 	private int m_Slot,m_LoopSlot;
 	private int m_Status;
-	
-	protected GameMachine gameMachine;
-	
+	private GameMachine m_GameMachine;
+		
 	public static final int ENTITYCOUNT=1024;
 	
 	public static final int STATUS_END=-1;
 	public static final int STATUS_IDLE=0;
 	public static final int STATUS_RUNNING=1;
 	
-	public GameWorld(GameMachine gameMachine)
+	public GameWorld()
 	{
-		this.gameMachine = gameMachine;
+	
+		m_Entity=new SimpleEntity[ENTITYCOUNT];
+		m_Slot=0;
+		m_Status=STATUS_IDLE;
+	}
 		
+	public GameWorld(GameMachine p_GameMachine)
+	{
+		setGameMachine(p_GameMachine);
+
 		m_Entity=new SimpleEntity[ENTITYCOUNT];
 		m_Slot=0;
 		m_Status=STATUS_IDLE;
@@ -35,7 +42,12 @@ public class GameWorld
 		m_Slot=0;
 		m_Status=STATUS_IDLE;
 	}
-	
+
+	public void setGameMachine(GameMachine p_GameMachine)
+	{
+		m_GameMachine=p_GameMachine;
+	}
+ 
 	public int createSimpleEntity()
 	{
 		return createSimpleEntity(new SimpleEntity());
