@@ -17,6 +17,7 @@ public class TankEntity extends SimpleEntity {
 	private int speed_price;
 	private int live_price;
 
+	private final int LIVE_P = 0;
     
 	public TankEntity(int p_Type, int p_ImageSet, int p_X, int p_Y,
 			int p_Width, int p_Height,GameMachine gm) {
@@ -70,6 +71,10 @@ public class TankEntity extends SimpleEntity {
     	if (shield<3 && points>=shield_price) incrementable[2]= true;
     	if (speed<3 && points>=speed_price) incrementable[3]= true;
     	return incrementable;	
+    }
+    
+    public boolean isIncrementableLive() {
+    	return isIncrementable()[LIVE_P];
     }
     
     public int getLive () {

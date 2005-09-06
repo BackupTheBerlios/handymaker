@@ -7,7 +7,7 @@ public class GameWorld
 	private SimpleEntity m_Entity[];
 	private int m_Slot,m_LoopSlot;
 	private int m_Status;
-	private GameMachine m_GameMachine;
+	protected GameMachine m_GameMachine;
 		
 	public static final int ENTITYCOUNT=1024;
 	

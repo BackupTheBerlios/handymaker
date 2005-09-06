@@ -26,7 +26,7 @@ public class InvadersGameWorld extends GameWorld
 	{
 		/* diesen block hinzugefügt + konstruktor geändert*/
 		/* ANFANG */
-		Level l = gameMachine.getCurrLevel();
+		Level l = m_GameMachine.getCurrLevel();
 
 		int invaderCount = l.getLevelIntValue(InvadersSettings.INVADERCOUNT);
 		
