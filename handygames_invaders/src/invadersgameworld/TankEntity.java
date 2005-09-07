@@ -18,6 +18,9 @@ public class TankEntity extends SimpleEntity {
 	private int live_price;
 
 	private final int LIVE_P = 0;
+	private final int SHOT_P = 1;
+	private final int SHIELD_P = 2;
+	private final int SPEED_P = 3;
     
 	public TankEntity(int p_Type, int p_ImageSet, int p_X, int p_Y,
 			int p_Width, int p_Height,GameMachine gm) {
@@ -30,8 +33,13 @@ public class TankEntity extends SimpleEntity {
 		this.points += points;
 	}
 	
-	public void lostLive () {
-		live--;
+	public boolean lostLive () {
+		if (live>0){ 
+		  live--;
+		  return true;
+		}	  
+		else
+			return false;
 	}
 	
 	/* preise könnten je nach updatetype und abhängig von z.b. current level
@@ -75,6 +83,18 @@ public class TankEntity extends SimpleEntity {
     
     public boolean isIncrementableLive() {
     	return isIncrementable()[LIVE_P];
+    }
+    
+    public boolean isIncrementableShot () {
+    	return isIncrementable ()[SHOT_P]; 
+    }
+    
+    public boolean isIncrementableShield () {
+    	return isIncrementable ()[SHIELD_P];
+    }
+    
+    public boolean isIncrementabelSpeed () {
+    	return isIncrementable ()[SPEED_P];
     }
     
     public int getLive () {
