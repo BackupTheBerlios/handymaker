@@ -16,11 +16,24 @@ public class TankEntity extends SimpleEntity {
 	private int shield_price;
 	private int speed_price;
 	private int live_price;
+	
+	private int m_Movementstatus;
+	private int m_Shotstatus;
 
 	private final int LIVE_P = 0;
 	private final int SHOT_P = 1;
 	private final int SHIELD_P = 2;
 	private final int SPEED_P = 3;
+
+	public final int MOVE_NONE=0;
+	public final int MOVE_RIGHT=1;
+	public final int MOVE_LEFT=3;
+	
+	public final int SHOT_NONE=0;
+	public final int SHOT_LEFT=0;
+	public final int SHOT_STRAIGHT=0;
+	public final int SHOT_RIGHT=0;
+
     
 	public TankEntity(int p_Type, int p_ImageSet, int p_X, int p_Y,
 			int p_Width, int p_Height,GameMachine gm) {
@@ -115,6 +128,26 @@ public class TankEntity extends SimpleEntity {
     
     public int getPoints () {
     	return points;
+    }
+    
+    public void setMovementstatus(int p_mstatus)
+    {
+    	m_Movementstatus=p_mstatus;
+    }
+    
+    public void setShotStatus(int p_sstatus)
+    {
+    	m_Shoitstatus=p_sstatus;
+    }
+    
+    public int getMovementstatus()
+    {
+    	return m_Movementstatus;
+    }
+    
+    public int getShotStatus()
+    {
+    	return m_Shotstatus;
     }
  }
 
