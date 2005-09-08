@@ -68,11 +68,17 @@ public class InvadersSettings {
 	public static final int I_START = 0;
 	public static final int I_HIGHSCORE = 1;
 	public static final int I_QUIT = 2;
+	
 
 	public static final String DESC_BACKGROUND = "3.PNG";
 	public static final String[] DESC_INVADERSTARTSCREEN_CHOSENOPTIONS = {"start_c.PNG","highscore_c.PNG","quit_c.PNG"};
 	public static String DESC_INVADER_STARTSCREEN_OPTIONS []= {"start.PNG","highscore.PNG","quit.PNG"};	
-
+																		
+	public static final String SHOP_BACKGROUND = "hawaii.jpg";
+	public static String SHOP_INVADER_STARTSCREEN_OPTIONS []= {"live.PNG","shield.PNG","shot.PNG","speed.PNG","exit.PNG"};	
+	
+	
+	
 	/** Für den Invadertyp A */
 	public static String DESC_INVADER_A_IMAGESET  [][] = {{"1.PNG","2.PNG","3.PNG","4.PNG","5.PNG","6.PNG"},{"inv_move1.png","inv_move2.png"}};
 
@@ -101,7 +107,15 @@ public class InvadersSettings {
 	public static int HIGHSCORE = 1;
 	public static int QUIT = 2;
 	public static String OPTIONS [] = {"Start","Highscore","Quit"};
-	public static String background = ResourceLoader.IMAGEROOT+"3.PNG";
+
+	
+	public static int LIVE = 0;
+	public static int SHIELD = 1;
+	public static int SHOT = 2;
+	public static int SPEED = 3;
+	public static int EXITSHOP = 4;
+	public static String SHOP_OPTIONS [] = {"Live","Shield","Shot","Speed","Exit"};
+	
 	
 	
 	/** Für die config files*/

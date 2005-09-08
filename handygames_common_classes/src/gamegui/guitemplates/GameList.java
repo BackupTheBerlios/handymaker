@@ -133,27 +133,54 @@ public class GameList extends GameCanvas implements CommandListener, Runnable{
 		this.borderWidth = borderWidth;
 	}
 	
-	public void paint(Graphics g) {
+	private void justText(Graphics g, int i) {
+		if (i == indexOfChosen)
+			g.setColor(chosen_r,chosen_g,chosen_b);
+		else 
+			g.setColor(norm_r,norm_g,norm_b);
+		g.drawString(options[i],startPosX,startPosY+spaceBetweenChoice*i,Graphics.TOP | Graphics.LEFT);
+	}
+	
+	private void background(Graphics g) {
 		if (i_background != null) {
 			g.drawImage(i_background,0,0,Graphics.TOP | Graphics.LEFT);
 		}
+	}
+	
+	private int chosenStartPosYOffset() {
+		int spy = startPosY;
 		
-		int curry = startPosY;
+		for (int i=0; i<options.length;i++) {
+			spy = spy+spaceBetweenChoice+i_option[i].getHeight();
+			if (i == indexOfChosen)
+				break;
+		}
+		
+		return getHeight()-spy;
+	}
+	
+	public void paint(Graphics g) {
+		background(g);
+
+		int offset = chosenStartPosYOffset();
+		int curry = startPosY+((offset<0)?offset:0);
+		
 		for (int i=0; i<options.length;i++) {
 			if (i_option == null) {
-				if (i == indexOfChosen)
-					g.setColor(chosen_r,chosen_g,chosen_b);
-				else 
-					g.setColor(norm_r,norm_g,norm_b);
-				g.drawString(options[i],startPosX,startPosY+spaceBetweenChoice*i,Graphics.TOP | Graphics.LEFT);
+				justText(g,i);
 			} else {
 				if (i == indexOfChosen) {
+					if (curry < 10) {
+						curry = 10;
+					}
+
 					g.setColor(border_r,border_g,border_b);
 					g.fillRect(startPosX-borderWidth,curry-borderWidth,i_option[i].getWidth()+(2*borderWidth),i_option[i].getHeight()+(2*borderWidth));
 					if (i_chosen_option != null)
 						g.drawImage(i_chosen_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
 					else
 						g.drawImage(i_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
+					
 				} else
 					g.drawImage(i_option[i],startPosX,curry,Graphics.TOP | Graphics.LEFT);
 				curry = curry+spaceBetweenChoice+i_option[i].getHeight();

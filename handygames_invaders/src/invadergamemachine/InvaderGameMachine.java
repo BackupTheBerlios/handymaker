@@ -47,6 +47,7 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	private InvaderSoundMachine ism = null;
 	
 	private GameList startScreen = null;
+	private GameList shopScreen = null;
 	
 	private Level [] levels = null;
 	private int currLevelIndex = 0;
@@ -168,35 +169,71 @@ public class InvaderGameMachine extends GameMachine implements Runnable {
 	public void showStartScreen() {
 		ResourceLoader rl = new ResourceLoader();
 		
+		shopScreen = null;
+		
 		try {
 			Image background = background = rl.loadSimpleImage(InvadersSettings.DESC_BACKGROUND);
 			Image [] options = rl.loadImageArray(InvadersSettings.DESC_INVADER_STARTSCREEN_OPTIONS);
-			Image [] chosen_options = rl.loadImageArray(InvadersSettings.DESC_INVADERSTARTSCREEN_CHOSENOPTIONS); 
+			Image [] chosen_options = rl.loadImageArray(InvadersSettings.DESC_INVADERSTARTSCREEN_CHOSENOPTIONS);
 			startScreen = new GameList(this,false,background,options,chosen_options,InvadersSettings.OPTIONS);
 			
-			
-//			startScreen = new GameList(this,false,background,options,InvadersSettings.OPTIONS);
-			startScreen.setBorderWidth(0);
-			startScreen.setBorderColor(255,255,255);
-			startScreen.centralizeXY();
+			startScreen .setBorderWidth(0);
+			startScreen .setBorderColor(255,255,255);
+			startScreen .centralizeXY();
 		} catch (IOException e) {
 			e.printStackTrace();
 		} catch (GameException e) {
 			e.printStackTrace();
+			System.out.println(e);
 		}
 		
-		startScreen.centralizeXY();
 		getCurrentDisplay().setCurrent(startScreen);
 	}
-
+	
+	public void showShop() {
+		ResourceLoader rl = new ResourceLoader();
+		
+		startScreen = null;
+		
+		try {
+			Image background = background = rl.loadSimpleImage(InvadersSettings.SHOP_BACKGROUND);
+			Image [] options = rl.loadImageArray(InvadersSettings.SHOP_INVADER_STARTSCREEN_OPTIONS);
+			shopScreen = new GameList(this,false,background,options,InvadersSettings.SHOP_OPTIONS);
+			
+			shopScreen.setBorderWidth(3);
+			shopScreen.setBorderColor(0,255,255);
+			shopScreen.centralizeXY();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (GameException e) {
+			e.printStackTrace();
+			System.out.println(e);
+		}
+		
+		getCurrentDisplay().setCurrent(shopScreen);
+	}
+	
 	/* (non-Javadoc)
 	 * @see gamemachine.GameMachine#execute(int)
 	 */
 	public void execute(int command) {
-		if (command == InvadersSettings.START) {
-			initPlay();
-			startPlay();
-		}	
+		if (startScreen != null) {
+			if (command == InvadersSettings.START) {
+				initPlay();
+				startPlay();
+			}
+			
+			if (command == InvadersSettings.HIGHSCORE) {
+				showShop();
+			}
+		}
+		
+		if (shopScreen != null) {
+			if (command == InvadersSettings.EXITSHOP) {
+				showStartScreen();
+			}
+		}
+		
 	}
 
 	/* (non-Javadoc)
