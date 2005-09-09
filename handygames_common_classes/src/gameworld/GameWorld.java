@@ -61,13 +61,13 @@ public class GameWorld
 	{
 		int startSlot=m_Slot;
 		
-		if ((p_Layer<0) || (p_Layer>=m_Entity.length())) return -1;
+		if ((p_Layer<0) || (p_Layer>=m_Entity.length)) return -1;
 		do
 		{
 			if (m_Entity[p_Layer][m_Slot]==null)
 			{
 				m_Entity[p_Layer][m_Slot]=new SimpleEntity(p_Layer,p_SE);
-				return m_Slot+m_Layer*m_Entity.length();
+				return m_Slot+m_Layer*m_Entity.length;
 			}
 			
 			m_Slot=(m_Slot+1)%m_Entity.length;
@@ -86,13 +86,13 @@ public class GameWorld
 	{
 		int startSlot=m_Slot;
 		
-		if ((p_Layer<0) || (p_Layer>=m_Entity.length())) return -1;
+		if ((p_Layer<0) || (p_Layer>=m_Entity.length)) return -1;
 		do
 		{
 			if (m_Entity[p_Layer][m_Slot]==null)
 			{
 				m_Entity[p_Layer][m_Slot]=new Entity(p_Layer,p_E);
-				return m_Slot+m_Layer*m_Entity.length();
+				return m_Slot+m_Layer*m_Entity.length;
 			}
 			
 			m_Slot=(m_Slot+1)%m_Entity.length;
@@ -106,14 +106,14 @@ public class GameWorld
 	{
 		int startSlot=m_Slot;
 		
-		if ((p_Layer<0) || (p_Layer>=m_Entity.length())) return -1;
+		if ((p_Layer<0) || (p_Layer>=m_Entity.length)) return -1;
 		
 		do
 		{
 			if (m_Entity[p_Layer][m_Slot]==null)
 			{
 				m_Entity[p_Layer][m_Slot]=p_Entity;
-				return m_Slot+p_Layer*m_Entity.length();
+				return m_Slot+p_Layer*m_Entity.length;
 			}
 			
 			m_Slot=(m_Slot+1)%m_Entity.length;
@@ -146,12 +146,12 @@ public class GameWorld
 		{
 			++m_LoopSlot;
 			
-			if (m_LoopSlot>=m_Entity[].length())
+			if (m_LoopSlot>=m_Entity[m_LoopLayer].length)
 			{
 				m_LoopSlot=0;
 				++m_LoopLayer;
 			}
-			if (m_LoopLayer>=m_Entity.length()) return null;
+			if (m_LoopLayer>=m_Entity.length) return null;
 		}
 		
 		return m_Entity[m_LoopLayer][m_LoopSlot];
@@ -166,7 +166,7 @@ public class GameWorld
 	
 	public int getLayerCount()
 	{
-		return m_Entity.length();
+		return m_Entity.length;
 	}
 	
 	public int getStatus()
