@@ -7,7 +7,7 @@ public class GameWorld
 	private SimpleEntity m_Entity[][];
 	private int m_Slot,m_LoopSlot,m_LoopLayer;
 	private int m_Status;
-	protected GameMachine m_GameMachine;
+	private GameMachine m_GameMachine;
 		
 	public static final int ENTITYCOUNT=256;
 	public static final int LAYERCOUNT=4;
