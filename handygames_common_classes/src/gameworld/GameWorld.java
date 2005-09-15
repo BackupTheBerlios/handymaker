@@ -66,8 +66,8 @@ public class GameWorld
 		{
 			if (m_Entity[p_Layer][m_Slot]==null)
 			{
-				m_Entity[p_Layer][m_Slot]=new SimpleEntity(p_Layer,p_SE);
-				return m_Slot+m_Layer*m_Entity.length;
+				m_Entity[p_Layer][m_Slot]=new SimpleEntity(p_SE);
+				return m_Slot+p_Layer*m_Entity.length;
 			}
 			
 			m_Slot=(m_Slot+1)%m_Entity.length;
@@ -91,8 +91,8 @@ public class GameWorld
 		{
 			if (m_Entity[p_Layer][m_Slot]==null)
 			{
-				m_Entity[p_Layer][m_Slot]=new Entity(p_Layer,p_E);
-				return m_Slot+m_Layer*m_Entity.length;
+				m_Entity[p_Layer][m_Slot]=new Entity(p_E);
+				return m_Slot+p_Layer*m_Entity.length;
 			}
 			
 			m_Slot=(m_Slot+1)%m_Entity.length;
