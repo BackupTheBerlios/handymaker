@@ -15,8 +15,10 @@ public class InvadersGameWorld extends GameWorld
 	TankEntity m_Tank;
 	
 	public static final int ENTITY_PLAYER=1;
-	public static final int ENTITY_SHOT1=2;
+	public static final int ENTITY_SHOT_S=2;
 	public static final int ENTITY_INVADER1=3;
+	public static final int ENTITY_SHOT_L=4;
+	public static final int ENTITY_SHOT_R=5;
 	
 	public static final long FRAMEDELAY=50;
 	
@@ -89,6 +91,22 @@ public class InvadersGameWorld extends GameWorld
 				break;
 			}
 			//move/create shots
+			
+			switch(m_Tank.getShotstatus())
+			{
+				case TankEntity.SHOT_LEFT:
+					addSimpleEntity(1,new SimpleEntity());
+				break;
+				
+				case TankEntity.SHOT_STRAIGHT:
+					addSimpleEntity(1,new SimpleEntity());
+				break;
+					
+				case TankEntity.SHOT_RIGHT:
+					addSimpleEntity(1,new SimpleEntity());
+				break;
+			}
+			m_Tank.setShotstatus(TankEntity.SHOT_NONE);
 			
 			m_LastUpdate+=FRAMEDELAY;
 		}

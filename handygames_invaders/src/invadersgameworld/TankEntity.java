@@ -30,9 +30,9 @@ public class TankEntity extends SimpleEntity {
 	public static final int MOVE_LEFT=3;
 	
 	public static final int SHOT_NONE=0;
-	public static final int SHOT_LEFT=0;
-	public static final int SHOT_STRAIGHT=0;
-	public static final int SHOT_RIGHT=0;
+	public static final int SHOT_LEFT=1;
+	public static final int SHOT_STRAIGHT=2;
+	public static final int SHOT_RIGHT=3;
 
     
 	public TankEntity(int p_Type, int p_ImageSet, int p_X, int p_Y,
@@ -145,7 +145,7 @@ public class TankEntity extends SimpleEntity {
     	return m_Movementstatus;
     }
     
-    public int getShotStatus()
+    public int getShotstatus()
     {
     	return m_Shotstatus;
     }
