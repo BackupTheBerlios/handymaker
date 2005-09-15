@@ -33,7 +33,7 @@ public class InvadersGameWorld extends GameWorld
 	{
 		/* diesen block hinzugefügt + konstruktor geändert*/
 		/* ANFANG */
-		Level l = gameMachine.getCurrLevel();
+		Level l = m_GameMachine.getCurrLevel();
 
 		int invaderCount = l.getLevelIntValue(InvadersSettings.INVADERCOUNT);
 		
@@ -60,25 +60,25 @@ public class InvadersGameWorld extends GameWorld
 		
 		//player ship
 		
-		addSimpleEntity(new SimpleEntity(ENTITY_PLAYER,ENTITY_PLAYER,100,200,30,30));
+		addSimpleEntity(1,new SimpleEntity(ENTITY_PLAYER,ENTITY_PLAYER,100,200,30,30));
 	}
 	
 	public int init()
 	{
-		m_LastUpdate=currentTimeMillis();
+		m_LastUpdate=System.currentTimeMillis();
 		loadNextLevel();
 		return 0;
 	}
 	
 	public int update()
 	{
-		long t=currentTimeMillis();
+		long t=System.currentTimeMillis();
 		
 		while(m_LastUpdate+FRAMEDELAY<t)
 		{
 			//move invaders
 			//move player
-			switch(m_TankEntity.getMovestatus())
+			switch(m_Tank.getMovementstatus())
 			{
 				case TankEntity.MOVE_LEFT:
 					if (m_Tank.getX()>=TANK_STEP) m_Tank.move(-TANK_STEP,0);
@@ -108,9 +108,11 @@ public class InvadersGameWorld extends GameWorld
 			case 1:m_Tank.setShotstatus(TankEntity.SHOT_LEFT);break;
 			case 2:m_Tank.setShotstatus(TankEntity.SHOT_STRAIGHT);break;
 			case 3:m_Tank.setShotstatus(TankEntity.SHOT_RIGHT);break;
-			case 4:m_Tank.setMovestatus(TankEntity.MOVE_LEFT);break;
-			case 5:m_Tank.setMovestatus(TankEntity.MOVE_NONE);break;
-			case 6:m_Tank.setMovestatus(TankEntity.MOVE_RIGHT);break;
+			case 4:m_Tank.setMovementstatus(TankEntity.MOVE_LEFT);break;
+			case 5:m_Tank.setMovementstatus(TankEntity.MOVE_NONE);break;
+			case 6:m_Tank.setMovementstatus(TankEntity.MOVE_RIGHT);break;
 		}
+		
+		return 0;
 	}
 }

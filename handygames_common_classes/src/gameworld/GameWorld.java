@@ -4,10 +4,10 @@ import gamemachine.GameMachine;
 
 public class GameWorld
 {
-	private SimpleEntity m_Entity[][];
-	private int m_Slot,m_LoopSlot,m_LoopLayer;
-	private int m_Status;
-	private GameMachine m_GameMachine;
+	protected SimpleEntity m_Entity[][];
+	protected int m_Slot,m_LoopSlot,m_LoopLayer;
+	protected int m_Status;
+	protected GameMachine m_GameMachine;
 		
 	public static final int ENTITYCOUNT=256;
 	public static final int LAYERCOUNT=4;

@@ -3,11 +3,11 @@ package gameworld;
 public class SimpleEntity
 {
 	//vars	
-	private int m_Type;
-	private int m_ImageSet;
-	private int m_PositionX,m_PositionY;
-	private int m_Width,m_Height;
-	private int m_Flag;
+	protected int m_Type;
+	protected int m_ImageSet;
+	protected int m_PositionX,m_PositionY;
+	protected int m_Width,m_Height;
+	protected int m_Flag;
 	
 	//statics
 	public static final int FLAG_HIDE=0x00000001;

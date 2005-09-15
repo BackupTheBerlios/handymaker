@@ -25,14 +25,14 @@ public class TankEntity extends SimpleEntity {
 	private final int SHIELD_P = 2;
 	private final int SPEED_P = 3;
 
-	public final int MOVE_NONE=0;
-	public final int MOVE_RIGHT=1;
-	public final int MOVE_LEFT=3;
+	public static final int MOVE_NONE=0;
+	public static final int MOVE_RIGHT=1;
+	public static final int MOVE_LEFT=3;
 	
-	public final int SHOT_NONE=0;
-	public final int SHOT_LEFT=0;
-	public final int SHOT_STRAIGHT=0;
-	public final int SHOT_RIGHT=0;
+	public static final int SHOT_NONE=0;
+	public static final int SHOT_LEFT=0;
+	public static final int SHOT_STRAIGHT=0;
+	public static final int SHOT_RIGHT=0;
 
     
 	public TankEntity(int p_Type, int p_ImageSet, int p_X, int p_Y,
@@ -135,9 +135,9 @@ public class TankEntity extends SimpleEntity {
     	m_Movementstatus=p_mstatus;
     }
     
-    public void setShotStatus(int p_sstatus)
+    public void setShotstatus(int p_sstatus)
     {
-    	m_Shoitstatus=p_sstatus;
+    	m_Shotstatus=p_sstatus;
     }
     
     public int getMovementstatus()
