@@ -129,4 +129,5 @@ public class InvadersSettings {
 	public static String MISSIONDESCRIPTION = "m_desc";
 	public static String MISSIONTERMINATION = "m_term";
 	
+
 }
