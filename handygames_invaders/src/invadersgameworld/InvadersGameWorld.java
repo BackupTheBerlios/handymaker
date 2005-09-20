@@ -10,7 +10,6 @@ import gameworld.*;
 
 public class InvadersGameWorld extends GameWorld
 {
-	int m_Level;
 	long m_LastUpdate;
 	TankEntity m_Tank;
 	
@@ -37,7 +36,6 @@ public class InvadersGameWorld extends GameWorld
 	public InvadersGameWorld(InvaderGameMachine invadersGameMachine)
 	{
 		super(invadersGameMachine);
-		m_Level=0;
 	}
 	
 	public void loadNextLevel()
@@ -45,7 +43,6 @@ public class InvadersGameWorld extends GameWorld
 		/* diesen block hinzugefügt + konstruktor geändert*/
 		/* ANFANG */
 		Level l = m_GameMachine.getCurrLevel();
-		SimpleEntity se;
 		InvaderEntity ie;
 
 		int invaderCount = l.getLevelIntValue(InvadersSettings.INVADERCOUNT);
@@ -73,14 +70,8 @@ public class InvadersGameWorld extends GameWorld
 		}
 		/* ENDE */
 		
-		
-		
-		m_Level=(++m_Level)%1 +1;
-		
-		
-		//player ship
+//		player ship
 		m_Tank=new TankEntity(ENTITY_PLAYER,ENTITY_PLAYER,BORDER_RIGHT/2,BORDER_BOTTOM-TANK_HEIGHT,TANK_WIDTH,TANK_HEIGHT,m_GameMachine);
-		
 		addSimpleEntity(1,m_Tank);
 	}
 	

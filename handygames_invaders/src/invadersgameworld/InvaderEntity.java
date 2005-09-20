@@ -4,16 +4,26 @@ import gameworld.*;
 
 public class InvaderEntity extends SimpleEntity
 {
-	private String m_AIString;
+	private int m_AIBuffer[][];
+	private int m_AICount;
+	private int m_AIPos;
 	
 	public InvaderEntity()
 	{
 		super();
-		m_AIString="";
+		m_AIBuffer=new int[1][1];
+		m_AICount=0;
+		m_AIPos=0;
 	}
 	
-	public String getAIString()
+	public void setAIBuffer(int p[][])
 	{
-		return m_AIString;
+		m_AIBuffer=p;
+	}
+	
+	public int getNextStep()
+	{
+		//to be done
+		return 0;
 	}
 }
