@@ -20,6 +20,10 @@ public class InvadersGameWorld extends GameWorld
 	public static final int ENTITY_SHOT_L=4;
 	public static final int ENTITY_SHOT_R=5;
 	
+	public static final int SHOT_WIDTH=8;
+	public static final int SHOT_HEIGHT=8;
+	public static final int SHOT_STEP=2;
+	
 	public static final long FRAMEDELAY=50;
 	
 	public static final int TANK_STEP=2; 
@@ -75,6 +79,7 @@ public class InvadersGameWorld extends GameWorld
 	public int update()
 	{
 		long t=System.currentTimeMillis();
+		SimpleEntity se;
 		
 		while(m_LastUpdate+FRAMEDELAY<t)
 		{
@@ -90,23 +95,49 @@ public class InvadersGameWorld extends GameWorld
 					if (m_Tank.getX()<=BORDER_RIGHT-TANK_STEP) m_Tank.move(TANK_STEP,0);
 				break;
 			}
-			//move/create shots
-			
+			//create shots
 			switch(m_Tank.getShotstatus())
 			{
 				case TankEntity.SHOT_LEFT:
-					addSimpleEntity(1,new SimpleEntity());
+					se=new SimpleEntity(ENTITY_SHOT_L,0,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
+					addSimpleEntity(1,se);
 				break;
 				
 				case TankEntity.SHOT_STRAIGHT:
-					addSimpleEntity(1,new SimpleEntity());
+					se=new SimpleEntity(ENTITY_SHOT_S,0,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
+					addSimpleEntity(1,se);
 				break;
 					
 				case TankEntity.SHOT_RIGHT:
-					addSimpleEntity(1,new SimpleEntity());
+					se=new SimpleEntity(ENTITY_SHOT_R,0,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
+					addSimpleEntity(1,se);
 				break;
 			}
 			m_Tank.setShotstatus(TankEntity.SHOT_NONE);
+			//move shots
+			se=getFirstEntity();
+			int ty=m_Tank.getY();
+			int k;
+			while(se!=null)
+			{
+				switch (se.getType())
+				{
+					case ENTITY_SHOT_L:
+						k=(int)(3.5 - 5*(ty-se.getY())/(double)(ty));
+						se.move(k,-SHOT_STEP);
+					break;
+					
+					case ENTITY_SHOT_S:
+						se.move(0,-SHOT_STEP);
+					break;
+						
+					case ENTITY_SHOT_R:
+						k=(int)(3.5 - 5*(ty-se.getY())/(double)(ty));
+						se.move(-k,-SHOT_STEP);
+					break;
+				}
+				se=getNextEntity();
+			}
 			
 			m_LastUpdate+=FRAMEDELAY;
 		}
