@@ -26,8 +26,13 @@ public class InvadersGameWorld extends GameWorld
 	
 	public static final long FRAMEDELAY=50;
 	
-	public static final int TANK_STEP=2; 
+	public static final int TANK_STEP=2;
+	public static final int TANK_WIDTH=16;
+	public static final int TANK_HEIGHT=16;
+	public static final int INVADER_WIDTH=16;
+	public static final int INVADER_HEIGHT=16;
 	public static final int BORDER_RIGHT=172;
+	public static final int BORDER_BOTTOM=200;
 	
 	public InvadersGameWorld(InvaderGameMachine invadersGameMachine)
 	{
@@ -40,33 +45,43 @@ public class InvadersGameWorld extends GameWorld
 		/* diesen block hinzugefügt + konstruktor geändert*/
 		/* ANFANG */
 		Level l = m_GameMachine.getCurrLevel();
+		SimpleEntity se;
+		InvaderEntity ie;
 
 		int invaderCount = l.getLevelIntValue(InvadersSettings.INVADERCOUNT);
 		
-		System.out.println("Level ziel:"+l.getLevelStringValue(InvadersSettings.MISSIONDESCRIPTION));
-		System.out.println("Aliens vernichten:"+ArrayTools.getPrintOf(l.getLevelIntArrayDim1(InvadersSettings.MISSIONTERMINATION)));
+		//System.out.println("Level ziel:"+l.getLevelStringValue(InvadersSettings.MISSIONDESCRIPTION));
+		//System.out.println("Aliens vernichten:"+ArrayTools.getPrintOf(l.getLevelIntArrayDim1(InvadersSettings.MISSIONTERMINATION)));
 		
-		for (int i=1; i<=invaderCount;i++) {
-			
-			System.out.println("\ninvader: "+i);
+		for (int i=1; i<=invaderCount;++i)
+		{
+			//System.out.println("\ninvader: "+i);
 			int [] pos_p = l.getLevelIntArrayDim1(InvadersSettings.INVADERPOSITIONPREFIX+i+InvadersSettings.INVADERPOSITIONSUFFIX);
-			System.out.println("- position:"+ArrayTools.getPrintOf(pos_p));
+			//System.out.println("- position:"+ArrayTools.getPrintOf(pos_p));
 			
 			int [][] pos_m = l.getLevelIntArrayDim2(InvadersSettings.INVADERMOVEMENTPREFIX+i+InvadersSettings.INVADERMOVEMENTSUFFIX);
-			System.out.println("- movement:"+ArrayTools.getArrayPrint(pos_m));
+			//System.out.println("- movement:"+ArrayTools.getArrayPrint(pos_m));
+			
+			ie=new InvaderEntity();
+			ie.setType(ENTITY_INVADER1);
+			ie.setDimension(INVADER_WIDTH,INVADER_HEIGHT);
+			ie.setImageSet(ENTITY_INVADER1);
+			ie.setPosition(pos_p[0],pos_p[1]);
+			ie.setAIBuffer(pos_m);
+			
+			addSimpleEntity(1,ie);
 		}
 		/* ENDE */
 		
-		SimpleEntity se;
+		
 		
 		m_Level=(++m_Level)%1 +1;
 		
 		
-		se=new SimpleEntity(ENTITY_INVADER1,ENTITY_INVADER1,0,0,30,30);
-		
 		//player ship
+		m_Tank=new TankEntity(ENTITY_PLAYER,ENTITY_PLAYER,BORDER_RIGHT/2,BORDER_BOTTOM-TANK_HEIGHT,TANK_WIDTH,TANK_HEIGHT,m_GameMachine);
 		
-		addSimpleEntity(1,new SimpleEntity(ENTITY_PLAYER,ENTITY_PLAYER,100,200,30,30));
+		addSimpleEntity(1,m_Tank);
 	}
 	
 	public int init()
@@ -84,6 +99,7 @@ public class InvadersGameWorld extends GameWorld
 		while(m_LastUpdate+FRAMEDELAY<t)
 		{
 			//move invaders
+			
 			//move player
 			switch(m_Tank.getMovementstatus())
 			{
@@ -99,17 +115,17 @@ public class InvadersGameWorld extends GameWorld
 			switch(m_Tank.getShotstatus())
 			{
 				case TankEntity.SHOT_LEFT:
-					se=new SimpleEntity(ENTITY_SHOT_L,0,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
+					se=new SimpleEntity(ENTITY_SHOT_L,ENTITY_SHOT_L,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
 					addSimpleEntity(1,se);
 				break;
 				
 				case TankEntity.SHOT_STRAIGHT:
-					se=new SimpleEntity(ENTITY_SHOT_S,0,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
+					se=new SimpleEntity(ENTITY_SHOT_S,ENTITY_SHOT_S,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
 					addSimpleEntity(1,se);
 				break;
 					
 				case TankEntity.SHOT_RIGHT:
-					se=new SimpleEntity(ENTITY_SHOT_R,0,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
+					se=new SimpleEntity(ENTITY_SHOT_R,ENTITY_SHOT_R,m_Tank.getX(),m_Tank.getY()-SHOT_STEP,SHOT_WIDTH,SHOT_HEIGHT);
 					addSimpleEntity(1,se);
 				break;
 			}
@@ -123,7 +139,7 @@ public class InvadersGameWorld extends GameWorld
 				switch (se.getType())
 				{
 					case ENTITY_SHOT_L:
-						k=(int)(3.5 - 5*(ty-se.getY())/(double)(ty));
+						k=(int)(3.5 - 5.0*(ty-se.getY())/(double)(ty));
 						se.move(k,-SHOT_STEP);
 					break;
 					
@@ -132,12 +148,14 @@ public class InvadersGameWorld extends GameWorld
 					break;
 						
 					case ENTITY_SHOT_R:
-						k=(int)(3.5 - 5*(ty-se.getY())/(double)(ty));
+						k=(int)(5.5 - 8.0*(ty-se.getY())/(double)(ty));
 						se.move(-k,-SHOT_STEP);
 					break;
 				}
 				se=getNextEntity();
 			}
+			
+			//collision
 			
 			m_LastUpdate+=FRAMEDELAY;
 		}
