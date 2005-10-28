@@ -30,6 +30,7 @@ public class InvadersGameWorld extends GameWorld
 	public static final int TANK_HEIGHT=16;
 	public static final int INVADER_WIDTH=16;
 	public static final int INVADER_HEIGHT=16;
+	public static final int INVADERS_LAYER=1;
 	public static final int BORDER_RIGHT=172;
 	public static final int BORDER_BOTTOM=200;
 	
@@ -66,7 +67,7 @@ public class InvadersGameWorld extends GameWorld
 			ie.setPosition(pos_p[0],pos_p[1]);
 			ie.setAIBuffer(pos_m);
 			
-			addSimpleEntity(1,ie);
+			addSimpleEntity(INVADERS_LAYER,ie);
 		}
 		/* ENDE */
 		
@@ -141,6 +142,34 @@ public class InvadersGameWorld extends GameWorld
 					case ENTITY_SHOT_R:
 						k=(int)(5.5 - 8.0*(ty-se.getY())/(double)(ty));
 						se.move(-k,-SHOT_STEP);
+					break;
+				}
+				se=getNextEntity();
+			}
+			
+			se=getFirstEntity();
+			
+			while(se!=null)
+			{
+				switch (se.getType())
+				{
+					case ENTITY_SHOT_L:
+					case ENTITY_SHOT_S:
+					case ENTITY_SHOT_R:
+						SimpleEntity he;
+						int k;
+						for(k=0;k<getLayerSize();++k)
+						{
+							he=getEntity(INVADERS_LAYER,k);
+							if (he.getType()==ENTITY_INVADER1)
+							{
+								if (he.isHitBy(se.getX(),se.getY(),se.getWidth(),se.getHeight()))
+								{
+									//destroy
+									removeEntity(INVADERS_LAYER,k);
+								}
+							}
+						}
 					break;
 				}
 				se=getNextEntity();

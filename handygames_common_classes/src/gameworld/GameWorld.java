@@ -123,6 +123,16 @@ public class GameWorld
 		return -1;
 	}
 	
+	public boolean removeEntity(int p_Layer,int p_Number)
+	{
+		SimpleEntity se=getEntity(p_Layer,p_Number);
+		if (se==null) retrun false;
+		
+		m_Entity[p_Layer][p_Number]=null;
+		
+		return true;
+	}
+	
 	public void moveAllEntitysofType(int p_Type,int dx,int dy)
 	{
 		SimpleEntity se;
@@ -139,6 +149,15 @@ public class GameWorld
 		}
 		
 	}
+
+	public SimpleEntity getEntity(int p_Layer,int p_Number)
+	{
+		if ((p_Layer<0) || (p_Layer>=m_Entity.length)) return null;
+		
+		if ((p_Number<0) || (p_Number>=m_Entity[0].length)) return null;
+		
+		return m_Entity[p_Layer][p_Number];
+	} 
 	
 	public SimpleEntity getNextEntity()
 	{
@@ -167,6 +186,11 @@ public class GameWorld
 	public int getLayerCount()
 	{
 		return m_Entity.length;
+	}
+	
+	public int getLayerSize()
+	{
+		return m_Entity[0].length;
 	}
 	
 	public int getStatus()
